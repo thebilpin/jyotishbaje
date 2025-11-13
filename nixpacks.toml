@@ -1,8 +1,8 @@
 [phases.setup]
-aptPkgs = ['...', 'php8.2-bcmath', 'php8.2-intl']
 
 [phases.install]
 cmds = [
+    'install-php-extensions bcmath intl gd zip',
     'composer install --no-dev --optimize-autoloader --no-interaction'
 ]
 
