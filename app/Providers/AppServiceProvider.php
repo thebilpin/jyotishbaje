@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Pagination\Paginator;
 use App\Models\Page;
 use App\Models\AdminModel\SystemFlag;
@@ -28,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Force HTTPS for all URLs in production
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
         Paginator::defaultView('vendor.pagination.simple-tailwind');
 
         View::composer('*', function ($view) {
