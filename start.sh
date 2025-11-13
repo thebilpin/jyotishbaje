@@ -13,10 +13,8 @@ fi
 echo "Running database migrations..."
 php artisan migrate --force
 
-echo "Importing initial data if needed..."
-if [ -f "astromigratedb.sql" ]; then
-  mysql -h "${DB_HOST}" -P "${DB_PORT:-3306}" -u "${DB_USERNAME}" -p"${DB_PASSWORD}" "${DB_DATABASE}" < astromigratedb.sql || echo "SQL import failed or already imported, continuing..."
-fi
+echo "Seeding initial data..."
+php artisan db:seed --class=InitialDataSeeder --force || echo "Seeder already ran or failed, continuing..."
 
 php artisan package:discover --ansi
 php artisan config:cache
