@@ -8,10 +8,10 @@ if [ -n "${DB_HOST}" ]; then
   done
 fi
 
+php artisan package:discover --ansi
 php artisan config:cache
-php artisan route:cache
+php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
 php artisan view:cache
 php artisan event:cache
-php artisan package:discover --ansi || true
 
 exec php artisan serve --host=0.0.0.0 --port="${PORT:-8000}"

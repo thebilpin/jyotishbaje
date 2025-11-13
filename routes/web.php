@@ -62,7 +62,9 @@ use App\Http\Controllers\Admin\PageManagementController;
 use App\Http\Controllers\Admin\WithdrawlController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\StoryController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use App\Http\Controllers\Admin\ProfileBoostController;
 use App\Http\Controllers\Admin\ReferralController;
 use App\Http\Controllers\frontend\AiAstrologer\AiAstrologerController;
@@ -78,11 +80,15 @@ use App\Http\Controllers\Admin\UserReminderController;
 use App\Http\Controllers\Admin\SendScheduledNotificationsController;
 use App\Http\Controllers\Admin\AdminGetTDSCommissionController;
 
-if (Schema::hasTable('systemflag')) {
-    $professionTitle = DB::table('systemflag')
-        ->where('name', 'professionTitle')
-        ->value('value');
-} else {
+try {
+    if (Schema::hasTable('systemflag')) {
+        $professionTitle = DB::table('systemflag')
+            ->where('name', 'professionTitle')
+            ->value('value');
+    } else {
+        $professionTitle = null;
+    }
+} catch (\Throwable $exception) {
     $professionTitle = null;
 }
 

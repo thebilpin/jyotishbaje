@@ -29,14 +29,18 @@ use App\Http\Controllers\frontend\PujaController;
 use App\Http\Controllers\frontend\BroadcastController;
 use App\Http\Controllers\frontend\DefaulterMessageController;
 use App\Http\Controllers\API\Astrologer\LiveAstroController;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-
-
-if (Schema::hasTable('systemflag')) {
-    $professionTitle = DB::table('systemflag')
-        ->where('name', 'professionTitle')
-        ->value('value'); // you can use value() directly instead of select()->first()
-} else {
+try {
+    if (Schema::hasTable('systemflag')) {
+        $professionTitle = DB::table('systemflag')
+            ->where('name', 'professionTitle')
+            ->value('value');
+    } else {
+        $professionTitle = null;
+    }
+} catch (\Throwable $exception) {
     $professionTitle = null;
 }
 
