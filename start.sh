@@ -29,10 +29,9 @@ php artisan view:clear
 php artisan config:clear
 php artisan cache:clear
 
-# Then rebuild caches
+# Then rebuild caches (skip view:cache to allow runtime compilation)
 php artisan config:cache
 php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
-php artisan view:cache
 php artisan event:cache
 
 exec php artisan serve --host=0.0.0.0 --port="${PORT:-8000}"
