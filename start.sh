@@ -2,10 +2,12 @@
 set -e
 
 if [ -n "${DB_HOST}" ]; then
-  echo "Waiting for database at ${DB_HOST}:${DB_PORT:-3306}..."
+  echo "Waiting for database connection..."
   until php -r 'try {$host = getenv("DB_HOST") ?: "mysql"; $port = getenv("DB_PORT") ?: 3306; $fp = @fsockopen($host, (int) $port, $errno, $errstr, 2); if ($fp) {fclose($fp); exit(0);} exit(1);} catch (Throwable $e) {exit(1);}'; do
+    echo "Database not ready yet, retrying in 2 seconds..."
     sleep 2
   done
+  echo "Database connection successful!"
 fi
 
 echo "Running database migrations..."
