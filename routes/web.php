@@ -750,3 +750,7 @@ Route::group(['middleware' => ['web']], function () use($professionTitle) {
     Route::get('/admin/tds-gst', [WithdrawlController::class, 'getTdsGst'])->name('tds-gst');
 
 });
+
+Route::fallback(function () {
+    return view('pages.404', ['layout' => 'login']);
+});
