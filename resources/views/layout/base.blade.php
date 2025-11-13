@@ -35,11 +35,11 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="keywords"
         content="{{ucfirst($appname)}} Admin Panel">
     <meta name="author" content="LEFT4CODE">
-    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js"></script>
-    <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-    <script src="{{ asset('build/assets/jquery.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js" defer></script>
+    <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" defer></script>
     <style>
         .disabled {
             pointer-events: none

@@ -1,7 +1,7 @@
-@extends('../layout/' . $layout)
+@extends('../layout/' . ($layout ?? 'login'))
 
 @section('head')
-    <title>Error Page - Midone - Tailwind HTML Admin Template</title>
+    <title>Error Page - Page Not Found</title>
 @endsection
 
 @section('content')

@@ -73,7 +73,7 @@ Route::get('/sendnotificationjob', function () {
 
 
 Route::get('/404', function () {
-    return view('pages/404');
+    return view('pages/404', ['layout' => 'login']);
 });
 
 Route::get('testmail', function () {
