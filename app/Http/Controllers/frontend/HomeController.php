@@ -46,9 +46,9 @@ class HomeController extends Controller
         $session = new Session();
         $token = $session->get('token');
 
-        Artisan::call('cache:clear');
-        $session = new Session();
-        $token = $session->get('token');
+        // Artisan::call('cache:clear'); // Disabled - clearing cache on every page load causes severe performance issues
+        // $session = new Session();
+        // $token = $session->get('token');
 
         $banner = Banner::query()->join('banner_types','banner_types.id','banners.bannerTypeId')->where('banners.isActive', '=', '1')->whereDate('fromDate', '<=', Carbon::today())->whereDate('ToDate', '>=', Carbon::today())
                 ->limit(10)->select('banners.*','banner_types.name as bannerType')->orderBy('banners.id', 'DESC')->get();
