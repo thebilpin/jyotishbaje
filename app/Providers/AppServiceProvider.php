@@ -57,8 +57,11 @@ class AppServiceProvider extends ServiceProvider
             $footerPages = Page::where('isActive', 1)->get();
             $view->with('footerPages', $footerPages);
 
-            $coinIcon = systemflag('coinIcon');
-            $walletType = strtolower(systemflag('walletType'));
+            $coinIconFlag = DB::table('systemflag')->where('name', 'coinIcon')->select('value')->first();
+            $coinIcon = $coinIconFlag ? $coinIconFlag->value : null;
+            
+            $walletTypeFlag = DB::table('systemflag')->where('name', 'walletType')->select('value')->first();
+            $walletType = $walletTypeFlag ? strtolower($walletTypeFlag->value) : null;
         
             // Share them with all Blade views
             View::share('coinIcon', $coinIcon);
