@@ -10,39 +10,52 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Only run if tables exist (they're created by seeder, not migrations)
+        $schema = DB::getSchemaBuilder();
+
         // Fix horosign table
-        DB::table('horosign')->update([
-            'image' => DB::raw("REPLACE(image, '/public/frontend/', '/frontend/')")
-        ]);
-        DB::table('horosign')->update([
-            'image' => DB::raw("REPLACE(image, 'public/frontend/', 'frontend/')")
-        ]);
+        if ($schema->hasTable('horosign')) {
+            DB::table('horosign')->update([
+                'image' => DB::raw("REPLACE(image, '/public/frontend/', '/frontend/')")
+            ]);
+            DB::table('horosign')->update([
+                'image' => DB::raw("REPLACE(image, 'public/frontend/', 'frontend/')")
+            ]);
+        }
 
         // Fix products table
-        DB::table('astromall')->update([
-            'productImage' => DB::raw("REPLACE(productImage, '/public/', '/')")
-        ]);
+        if ($schema->hasTable('astromall')) {
+            DB::table('astromall')->update([
+                'productImage' => DB::raw("REPLACE(productImage, '/public/', '/')")
+            ]);
+        }
 
         // Fix systemflag table
-        DB::table('systemflag')->update([
-            'value' => DB::raw("REPLACE(value, '/public/frontend/', '/frontend/')")
-        ]);
-        DB::table('systemflag')->update([
-            'value' => DB::raw("REPLACE(value, 'public/frontend/', 'frontend/')")
-        ]);
+        if ($schema->hasTable('systemflag')) {
+            DB::table('systemflag')->update([
+                'value' => DB::raw("REPLACE(value, '/public/frontend/', '/frontend/')")
+            ]);
+            DB::table('systemflag')->update([
+                'value' => DB::raw("REPLACE(value, 'public/frontend/', 'frontend/')")
+            ]);
+        }
 
         // Fix blog table
-        DB::table('blog')->update([
-            'blogImage' => DB::raw("REPLACE(blogImage, '/public/', '/')")
-        ]);
+        if ($schema->hasTable('blog')) {
+            DB::table('blog')->update([
+                'blogImage' => DB::raw("REPLACE(blogImage, '/public/', '/')")
+            ]);
+        }
 
         // Fix news table
-        DB::table('news')->update([
-            'bannerImage' => DB::raw("REPLACE(bannerImage, '/public/', '/')")
-        ]);
-        DB::table('news')->update([
-            'newsImage' => DB::raw("REPLACE(newsImage, '/public/', '/')")
-        ]);
+        if ($schema->hasTable('news')) {
+            DB::table('news')->update([
+                'bannerImage' => DB::raw("REPLACE(bannerImage, '/public/', '/')")
+            ]);
+            DB::table('news')->update([
+                'newsImage' => DB::raw("REPLACE(newsImage, '/public/', '/')")
+            ]);
+        }
     }
 
     /**
