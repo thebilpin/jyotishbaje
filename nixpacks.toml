@@ -3,7 +3,7 @@
 [phases.install]
 cmds = [
     'install-php-extensions bcmath intl gd zip',
-    'composer install --no-dev --optimize-autoloader --no-interaction'
+    'composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-intl'
 ]
 
 [phases.build]
