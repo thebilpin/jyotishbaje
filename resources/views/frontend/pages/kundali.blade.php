@@ -419,7 +419,7 @@
                                         <div
                                             class="looks-image ilook2 text-center position-relative align-items-center mr-md-3 mr-lg-4">
                                             <div class="looks-img-box position-relative"><img
-                                                    src="{{ asset('public/frontend/astrowaycdn/astroway/web/content/images/ads/kundali-dosha-banner.png') }}">
+                                                    src="{{ asset('frontend/astrowaycdn/astroway/web/content/images/ads/kundali-dosha-banner.png') }}">
                                             </div>
                                         </div>
                                         <span class="looks-circle size-2 tops position-absolute"></span>

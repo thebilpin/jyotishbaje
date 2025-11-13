@@ -44,7 +44,7 @@
                                         @if($liveAstrologer->profileImage)
                                         <img id="expertImgLive" width="100" height="145" loading="lazy" class="expert-profile-pic" src="{{ Str::startsWith($liveAstrologer->profileImage, ['http://','https://']) ? $liveAstrologer->profileImage : '/' . $liveAstrologer->profileImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $liveAstrologer->profileImage }}')" />
                                             @else
-                                            <img id="expertImgLive" src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="28"
+                                            <img id="expertImgLive" src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="28"
                                             height="28">
                                         @endif
 
@@ -85,7 +85,7 @@
                                         <a href="javascript:void(0)" data-toggle="modal"
                                             @if (!authcheck()) data-toggle="modal" data-target="#loginSignUp"  @else data-target="#CallChatConnect" @endif>
                                             <div class="py-3 text-center position-relative">
-                                                <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/ls_telephone.png') }}"
+                                                <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/ls_telephone.png') }}"
                                                     class="position-absolute" width="55" height="52">
                                             </div>
 
@@ -135,7 +135,7 @@
                             <h3 class="font-weight-bold font-24 d-md-block d-none pb-2 border-bottom">CHAT <span
                                     class="color-red">ROOM</span></h3>
                             <div class="log-container position-relative font-14" id="log"
-                                style="background:url({{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/stream-chat-bg.png') }})">
+                                style="background:url({{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/stream-chat-bg.png') }})">
 
 
 
@@ -215,7 +215,7 @@
                                     <img id="model-expert-image" class="rounded-full cursor-pointer" src="{{ Str::startsWith($liveAstrologer->profileImage, ['http://','https://']) ? $liveAstrologer->profileImage : '/' . $liveAstrologer->profileImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $liveAstrologer->profileImage }}')" />
                                         @else
                                         <img id="model-expert-image" class="rounded-circle"
-                                        src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="90" height="90">
+                                        src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="90" height="90">
                                         @endif
                                 </div>
                             </div>
@@ -235,12 +235,12 @@
                         <div class="d-flex align-items-center justify-content-center py-3">
                             <div class="d-flex align-items-center">
                                 <a href="{{ $appstore->value }}"><img
-                                        src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png') }}"
+                                        src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png') }}"
                                         alt="app-store" class="img-fluid" width="143" height="54" loading="lazy">
                                 </a>
 
                                 <a href="{{ $playstore->value }}" class="ml-3"><img
-                                        src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png') }}"
+                                        src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png') }}"
                                         alt="google-play" class="img-fluid" width="143" height="54"
                                         loading="lazy">
                                 </a>
@@ -417,7 +417,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+    <script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
 
@@ -535,7 +535,7 @@
                         if(messageParts[2]){
                             var imageUrl = messageParts[2];
                         }else{
-                            var imageUrl = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                            var imageUrl = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
                         }
 
                         var senderId = messageParts[4];
@@ -575,7 +575,7 @@
                             var imageUrl = "{{ url('/') }}" +
                                 "/{{ authcheck()['profile'] }}";
                             @else{
-                                var imageUrl = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                                var imageUrl = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
                             }
                             @endif
                         @endif

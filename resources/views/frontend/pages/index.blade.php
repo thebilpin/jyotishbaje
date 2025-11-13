@@ -319,7 +319,7 @@ $(document).ready(function() {
                                                 ${astrologer.profileImage ? `
                                                     <img src="/${astrologer.profileImage}" width="85" height="85" style="border-radius:50%;" loading="lazy">
                                                 ` : `
-                                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="85" height="85" style="border-radius:50%;">
+                                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="85" height="85" style="border-radius:50%;">
                                                 `}
                                             </div>
                                                ${astrologer.callStatus === 'Busy' ? `
@@ -353,19 +353,19 @@ $(document).ready(function() {
                                                 </svg>
                                             </span>
                                             <span class="font-13 d-block color-red">
-                                                <img src="{{ asset('public/frontend/homeimage/horoscope2.svg') }}" height="16" width="16" alt="">&nbsp;
+                                                <img src="{{ asset('frontend/homeimage/horoscope2.svg') }}" height="16" width="16" alt="">&nbsp;
                                                 ${astrologer.primarySkill ? astrologer.primarySkill.split(',').slice(0, 3).join(' | ') : ''}
                                             </span>
                                             <span class="font-13 d-block exp-language">
-                                                <img src="{{ asset('public/frontend/homeimage/language-icon.svg') }}" height="16" width="16" alt="">&nbsp;
+                                                <img src="{{ asset('frontend/homeimage/language-icon.svg') }}" height="16" width="16" alt="">&nbsp;
                                                 ${astrologer.languageKnown ? astrologer.languageKnown.split(',').slice(0, 3).join(' • ') : ''}
                                             </span>
                                             <span class="font-13 d-block">
-                                                <img src="{{ asset('public/frontend/homeimage/experience-expert-icon.svg') }}" height="16" width="16" alt="">&nbsp; Experience : ${astrologer.experienceInYears} Years
+                                                <img src="{{ asset('frontend/homeimage/experience-expert-icon.svg') }}" height="16" width="16" alt="">&nbsp; Experience : ${astrologer.experienceInYears} Years
                                             </span>
                                             ${astrologer.emergencyCallStatus ? `
                                               <span class="font-13 font-weight-semi-bold d-flex">
-                                                    <img src="{{ asset('public/frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; &nbsp;
+                                                    <img src="{{ asset('frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; &nbsp;
                                                     <span class="exprt-price mr-2">
                                                         <i class="fa-solid fa-phone mr-1"></i>${astrologer.emergency_audio_charge}
                                                     </span>
@@ -374,13 +374,13 @@ $(document).ready(function() {
                                             `: (astrologer.isFreeAvailable) ? `
                                                 <span class="font-13 font-weight-semi-bold d-flex">
                                                     <span class="exprt-price">
-                                                        <img src="{{ asset('public/frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; <del> ${astrologer.charge}</del>/Min
+                                                        <img src="{{ asset('frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; <del> ${astrologer.charge}</del>/Min
                                                     </span>
                                                     <span class="free-badge text-uppercase color-red ml-2">Free</span>
                                                 </span>
                                             ` : `
                                                 <span class="font-13 font-weight-semi-bold d-flex">
-                                                    <img src="{{ asset('public/frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; &nbsp;
+                                                    <img src="{{ asset('frontend/homeimage/rupee-coin-outline-icon.svg') }}" height="16" width="16" alt="">&nbsp; &nbsp;
                                                     <span class="exprt-price mr-2">
                                                         <i class="fa-solid fa-phone mr-1"></i>${astrologer.charge}
                                                     </span>
@@ -805,7 +805,7 @@ $(document).ready(function() {
                 <!-- Kundli Analysis Section -->
                 <div class="col-md-6">
                     <div class="kundli-card shadow d-none d-md-block" data-aos="fade-right" data-aos-delay="200">
-                        <a href="{{ route('front.getkundali') }}"><img src="{{ asset('public/frontend/homeimage/home-analyze.png') }}" alt="Sage Icon"></a>
+                        <a href="{{ route('front.getkundali') }}"><img src="{{ asset('frontend/homeimage/home-analyze.png') }}" alt="Sage Icon"></a>
                     </div>
                 </div>
             {{-- @if (isset($Tpanchangs) && count($Tpanchangs) > 0 && $Tpanchangs['status'] != 402 && $Tpanchangs['status'] != 400) --}}
@@ -888,7 +888,7 @@ $(document).ready(function() {
                     <div class="owl-carousel owl-theme owl-blur owl-mobile">
                         @foreach ($liveAstrologer as $live)
                             <div class="item gif-animation-enable mb-3"
-                                style="background:url('{{ $live->profileImage ? '/' . $live->profileImage : asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}')">
+                                style="background:url('{{ $live->profileImage ? '/' . $live->profileImage : asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}')">
                                 <a href="{{ route('front.LiveAstroDetails', ['astrologerId' => $live->astrologerId]) }}"
                                     class="text-white">
                                     <div class="position-relative live-expert">
@@ -905,7 +905,7 @@ $(document).ready(function() {
                                                     <img src="{{ Str::startsWith($live->profileImage, ['http://','https://']) ? $live->profileImage : '/' . $live->profileImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $live->profileImage }}')" width="38"
                                                             height="38" loading="lazy"/>
                                                     @else
-                                                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                                             width="38" height="38" loading="lazy" />
                                                     @endif
                                                 </div>
@@ -1025,7 +1025,7 @@ $(document).ready(function() {
                                             @if ($astrologer->profileImage)
                                             <img class="img-fluid" src="{{ Str::startsWith($astrologer->profileImage, ['http://','https://']) ? $astrologer->profileImage : '/' . $astrologer->profileImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $astrologer->profileImage }}')" />
                                             @else
-                                                <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                                <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                                     class="img-fluid">
                                             @endif
                                         </div>
@@ -1068,7 +1068,7 @@ $(document).ready(function() {
                     @if($story->profileImage)
                     <img  src="{{ Str::startsWith($story->profileImage, ['http://','https://']) ? $story->profileImage : '/' . $story->profileImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $story->profileImage }}')" />
                     @else
-                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" alt="{{$story->name}}">
+                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" alt="{{$story->name}}">
                     @endif
                     <p>{{$story->name}}</p>
                 </div>
@@ -1109,7 +1109,7 @@ $(document).ready(function() {
 
         @if (isset($astrologyVideo) && count($astrologyVideo) > 0)
         <section class="py-5 bg-white" id="calculator"
-            style="background: url('{{ asset('public/frontend/homeimage/videobackground.jpeg') }}');">
+            style="background: url('{{ asset('frontend/homeimage/videobackground.jpeg') }}');">
             <div class="container-fluid">
                 <h2 class="text-center text-black py-3 font-28">Astrology Videos</h2>
         
@@ -1127,7 +1127,7 @@ $(document).ready(function() {
                                     <img class="video-thumbnail img-fluid" style="height:160px" src="{{ Str::startsWith($video->coverImage, ['http://','https://']) ? $video->coverImage : '/' . $video->coverImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $video->coverImage }}')" />
 
                                     <img style="cursor: pointer;" class="position-absolute youtube-icon"
-                                        src="{{ asset('public/frontend/homeimage/youtube.svg') }}" alt="">
+                                        src="{{ asset('frontend/homeimage/youtube.svg') }}" alt="">
                                     <div class="video-title text-center mt-2">{{ $video->videoTitle }}</div>
                                 </div>
                             </a>
@@ -1145,7 +1145,7 @@ $(document).ready(function() {
                                     <img class="video-thumbnail img-fluid" style="height:160px"  src="{{ Str::startsWith($video->coverImage, ['http://','https://']) ? $video->coverImage : '/' . $video->coverImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $video->coverImage }}')" />
 
                                     <img style="cursor: pointer;" class="position-absolute youtube-icon"
-                                        src="{{ asset('public/frontend/homeimage/youtube.svg') }}" alt="">
+                                        src="{{ asset('frontend/homeimage/youtube.svg') }}" alt="">
                                     <div class="video-title text-center mt-2">{{ $video->videoTitle }}</div>
                                 </div>
                             </a>
@@ -1683,17 +1683,17 @@ $(document).ready(function() {
                 <h2 class="heading text-center">WHY {{ ucfirst($appname) }}?</h2>
                 <div class="row pt-4 pb-2">
                     <div class="col-4 text-center">
-                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about1.svg') }}"
+                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about1.svg') }}"
                             class="img-fluid" />
                         <p class="font-weight-semi-bold pt-3 font-14">Verified {{ucfirst($professionTitle)}}s</p>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about2.svg') }}"
+                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about2.svg') }}"
                             class="img-fluid" />
                         <p class="font-weight-semi-bold pt-3 font-14">Ask An {{ucfirst($professionTitle)}} Via Multiple Ways</p>
                     </div>
                     <div class="col-4 text-center">
-                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about3.svg') }}"
+                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/about3.svg') }}"
                             class="img-fluid" />
                         <p class="font-weight-semi-bold pt-3 font-14">100% Privacy Guaranteed</p>
                     </div>

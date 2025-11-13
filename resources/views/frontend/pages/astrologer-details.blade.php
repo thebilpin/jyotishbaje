@@ -527,13 +527,13 @@
                                     class="psychicpic img-fluid" alt="{{ $getAstrologer['recordList'][0]['name'] }}"
                                     width="143" height="143" /> -->
                             @else
-                                <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                     class="psychicpic img-fluid" alt="{{ $getAstrologer['recordList'][0]['name'] }}"
                                     width="143" height="143" />
                             @endif
                             <div id="psychic-21599-status" class="status-badge specific-Clr-Online hidden"></div>
                             <div class="position-absolute profile-badge">
-                                <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/deals/seal.png') }}"
+                                <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/deals/seal.png') }}"
                                     width="52" height="52" />
                             </div>
 
@@ -1194,7 +1194,7 @@
                                                         <img src="/{{ $review['profile'] }}" class="review-profile-pic"
                                                             alt="">
                                                     @else
-                                                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
+                                                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
                                                             class="review-profile-pic" alt="">
                                                     @endif
                                                 </p>

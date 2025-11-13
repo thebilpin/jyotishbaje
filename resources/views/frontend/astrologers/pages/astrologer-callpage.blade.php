@@ -1,6 +1,6 @@
 @extends('frontend.astrologers.layout.master')
 
-<!-- <link rel="stylesheet" href="{{ asset('public/frontend/agora/index.css') }}"> -->
+<!-- <link rel="stylesheet" href="{{ asset('frontend/agora/index.css') }}"> -->
 <style>
     /* Same CSS as user page */
     @media only screen and (max-width: 767px) {
@@ -284,7 +284,7 @@ $call_type = request()->query('call_type');
 @endsection
 
 @section('scripts')
-<script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+<script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
 <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
 
 <script>
@@ -671,8 +671,8 @@ $call_type = request()->query('call_type');
         //     // window.location.href = "{{ route('front.astrologerindex') }}";
         // }
     </script>
-    <script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
-    <script src="{{ asset('public/frontend/agora/index.js') }}"></script>
+    <script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+    <script src="{{ asset('frontend/agora/index.js') }}"></script>
 
 
     <script>

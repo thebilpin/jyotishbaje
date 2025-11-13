@@ -77,7 +77,7 @@
                                             height="28">
 
                                             @else
-                                            <img id="expertImgLive" src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="28"
+                                            <img id="expertImgLive" src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}" width="28"
                                             height="28">
                                         @endif
 
@@ -148,11 +148,11 @@
                             <!--            @if (!astroauthcheck()) data-target="#loginSignUp" @else data-target="#gift_popup" @endif-->
                             <!--            class="btn btn-raised  waves-effect waves-light ml-2  d-inline align-items-center justify-content-center"-->
                             <!--            id="send_gift">-->
-                            <!--            <img src="{{asset('public/frontend/homeimage/shareproduct.png')}}" style="height: 25px" alt="">-->
+                            <!--            <img src="{{asset('frontend/homeimage/shareproduct.png')}}" style="height: 25px" alt="">-->
                             <!--        </a></span></h3>-->
 
                             <div class="log-container position-relative font-14" id="log"
-                                style="background:url({{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/stream-chat-bg.png') }})">
+                                style="background:url({{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/stream-chat-bg.png') }})">
 
 
 
@@ -360,7 +360,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+    <script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
 
@@ -455,7 +455,7 @@
                         if(messageParts[2]){
                             var imageUrl = messageParts[2];
                         }else{
-                            var imageUrl = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                            var imageUrl = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
                         }
 
                         var senderId = messageParts[4];
@@ -490,7 +490,7 @@
                             var imageUrl = "{{ url('/') }}" +
                                 "/{{ astroauthcheck()['profile'] }}";
                             @else{
-                                var imageUrl = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                                var imageUrl = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
                             }
                             @endif
                         @endif

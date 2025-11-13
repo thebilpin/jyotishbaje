@@ -84,7 +84,7 @@
                         <div class="col-md-3">
                             <div class="profile-card">
                                 @php
-                                    $profileImage = !empty($astrologerFollowers['profile']) ? $astrologerFollowers['profile'] : asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png');
+                                    $profileImage = !empty($astrologerFollowers['profile']) ? $astrologerFollowers['profile'] : asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png');
                                 @endphp
                                 <img class="avatar" src="/{{ $profileImage }}" />&nbsp;&nbsp;
                                 <div class="profile-info">

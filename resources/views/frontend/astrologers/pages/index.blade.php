@@ -163,7 +163,7 @@ select option {
     <!-- Add the Test Sounds button here -->
     <div class="status-section">
         <button id="test-sound-btn" class="test-sound-btn"><i class="fa-solid fa-play"></i> Test Sounds</button>
-        <audio id="sound-player" src="{{ asset('public/sound/ringtone-126505.mp3') }}"></audio>
+        <audio id="sound-player" src="{{ asset('sound/ringtone-126505.mp3') }}"></audio>
     </div>
 </div>
 
@@ -196,7 +196,7 @@ select option {
                                     @if($request['profile'])
                                     <img src="/{{$request['profile']}}" class="rounded-circle img-fluid" style="height: 70px;width:110px" alt="Avatar">
                                     @else
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}" class="rounded-circle img-fluid" style="height: 100% !important;" alt="Avatar">
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}" class="rounded-circle img-fluid" style="height: 100% !important;" alt="Avatar">
                                     @endif
                                 </div>
                                 <div class="d-flex flex-column">
@@ -244,7 +244,7 @@ select option {
                                     @if($request['profile'])
                                     <img src="/{{$request['profile']}}" class="rounded-circle img-fluid" style="height: 70px;width:110px" alt="Avatar">
                                     @else
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}" class="rounded-circle img-fluid" style="height: 100% !important;" alt="Avatar">
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}" class="rounded-circle img-fluid" style="height: 100% !important;" alt="Avatar">
                                     @endif                                </div>
                                 <div class="d-flex flex-column">
                                     <span>{{$request['name']?:'User' }}</span>
@@ -641,7 +641,7 @@ select option {
                 chatRequests.empty();
                 if (requests && requests.length > 0) {
                     requests.forEach(request => {
-                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
+                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
                         const name=request.name ? `${request.name}` : 'User';
                         chatRequests.append(`
                             <form id="chatForm">
@@ -678,7 +678,7 @@ select option {
                 callRequests.empty();
                 if (requests && requests.length > 0) {
                     requests.forEach(request => {
-                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
+                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
                         const name=request.name ? `${request.name}` : 'User';
                         callRequests.append(`
                             <form id="callForm">
@@ -720,7 +720,7 @@ select option {
                 reportRequests.empty();
                 if (requests && requests.length > 0) {
                     requests.forEach(request => {
-                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
+                        const profileImg = request.profile ? `/${request.profile}` : '{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
                         const lastName = request.lastName ? request.lastName : '';
                         reportRequests.append(`
                             <div><span class="text-dark font-weight-bold ml-2">${request.reportType}</span></div>
@@ -775,7 +775,7 @@ select option {
                     if (response.status === 200 && response.recordList.length > 0) {
                         var record = response.recordList[0];
 
-                        var profileImage = record.profile ? '/' + record.profile : '{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
+                        var profileImage = record.profile ? '/' + record.profile : '{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/blank-profile.png') }}';
 
                         var html = `
                             <div>

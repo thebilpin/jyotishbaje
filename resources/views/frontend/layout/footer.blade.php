@@ -72,51 +72,51 @@ $aiAstrologer = DB::table('systemflag')->where('name', 'AiAstrologer')->select('
                 <div class="col-md-3 col-6 mb-4  text-md-left">
                     <h5 class="text-white p-2 font-16 border-bottom border-secondary ">Download Our Apps</h5>
                     <a href="{{$playstore->value}}" class="d-block mt-3">
-                        <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png')}}" alt="google-play" class="img-fluid" width="183" height="54" loading="lazy">
+                        <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png')}}" alt="google-play" class="img-fluid" width="183" height="54" loading="lazy">
                     </a>
                     <a href="{{$appstore->value}}" class="d-block mt-3">
-                        <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png')}}" alt="app-store" class="img-fluid" width="183" height="54" loading="lazy">
+                        <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png')}}" alt="app-store" class="img-fluid" width="183" height="54" loading="lazy">
                     </a>
 
                     <div class=" mt-3 f-icon justify-content-md-start">
                         @if(!empty($facebook->value))
                         <a class="social-icon" target="_blank" href="{{$facebook->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/fb.svg')}}" alt="facebook" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/fb.svg')}}" alt="facebook" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($twitter->value))
                         <a class="social-icon" target="_blank" href="{{$twitter->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/twitter.svg')}}" alt="twitter" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/twitter.svg')}}" alt="twitter" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($linkedIn->value))
                         <a class="social-icon" target="_blank" href="{{$linkedIn->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/linkedin.svg')}}" alt="linkedin" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/linkedin.svg')}}" alt="linkedin" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($instagram->value))
                         <a class="social-icon" target="_blank" href="{{$instagram->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/insta.svg')}}" alt="instagram" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/insta.svg')}}" alt="instagram" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($youtube->value))
                         <a class="social-icon" target="_blank" href="{{$youtube->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/youtube.svg')}}" alt="youtube" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/youtube.svg')}}" alt="youtube" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($pintrest->value))
                         <a class="social-icon" target="_blank" href="{{$pintrest->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/pinterest.svg')}}" alt="pinterest" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/pinterest.svg')}}" alt="pinterest" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($whatsapp->value))
                         <a class="social-icon" target="_blank" href="{{$whatsapp->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/whatsapp.svg')}}" alt="whatsapp" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/whatsapp.svg')}}" alt="whatsapp" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                         @if(!empty($telegram->value))
                         <a class="social-icon" target="_blank" href="{{$telegram->value}}" rel="nofollow">
-                            <img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/telegram.svg')}}" alt="telegram" width="30" height="30" loading="lazy">
+                            <img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/telegram.svg')}}" alt="telegram" width="30" height="30" loading="lazy">
                         </a>
                         @endif
                     </div>

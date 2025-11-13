@@ -279,10 +279,10 @@ if(authcheck()){
 
             <div class="btn-groups d-none d-lg-flex mr-md-3">
                 <a href="{{ route('front.talkList') }}" id="callPg" class="btn btn-chat-astro other-country"><img
-                        src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/call.svg') }}"
+                        src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/call.svg') }}"
                         alt="call"> Talk To {{ $professionTitle }}</a>
                 <a href="{{ route('front.chatList') }}" id="chatPg" class="btn btn-chat-astro"><img
-                        src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/chat.svg') }}"
+                        src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/chat.svg') }}"
                         alt="chat"> Chat With {{ $professionTitle }}</a>
             </div>
 
@@ -301,7 +301,7 @@ if(authcheck()){
                                 @if (authcheck()['profile'])
                                     <img src="/{{ authcheck()['profile'] }}" alt="User" class="img-fluid rounded" style="height: 50px;width:50px">
                                 @else
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
                                         alt="" class="psychic-img img-fluid" >
                                 @endif
 
@@ -317,7 +317,7 @@ if(authcheck()){
                                             <img src="/{{ authcheck()['profile'] }}" alt="User"
                                                 class="img-fluid rounded" >
                                         @else
-                                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                                 alt="User" class="img-fluid">
                                         @endif
 
@@ -576,7 +576,7 @@ if(authcheck()){
                     <li class="nav-item">
                         <a class="nav-link font-weight-semi-bold nav-link-mobile"
                             href="{{ route('front.reportList') }}"><img
-                                src="{{ asset('public/frontend/homeimage/report.png') }}" alt=""
+                                src="{{ asset('frontend/homeimage/report.png') }}" alt=""
                                 height="20" width="20"> Reports</a>
                     </li>
 
@@ -601,10 +601,10 @@ if(authcheck()){
                     <li class="nav-item d-lg-none mb-2 mt-2 text-center">
                         <a href="{{ route('front.talkList') }}" id="callPg"
                             class="btn btn-chat other-country"><img
-                                src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/call.svg') }}"
+                                src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/call.svg') }}"
                                 alt="call"> Talk To {{ $professionTitle }}</a>
                         <a href="{{ route('front.chatList') }}" id="chatPg" class="btn btn-chat"><img
-                                src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/chat.svg') }}"
+                                src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/chat.svg') }}"
                                 alt="chat"> Chat With {{ $professionTitle }}</a>
                     </li>
                 </ul>
@@ -836,8 +836,8 @@ if(authcheck()){
                                 </div>
                                 <div class="text-center">
                                     <p>Download Our App For Better Experience</p>
-                                    <a href="{{$playstore->value}}" class="mt-2"><img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png')}}" alt="google-play" class="mt-2 img-fluid" width="183" height="54" loading="lazy"></a>
-                                    <a href="{{$appstore->value}}"><img src="{{asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png')}}" alt="google-play" class="img-fluid mt-2" width="183" height="54" loading="lazy"></a>
+                                    <a href="{{$playstore->value}}" class="mt-2"><img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/google-play.png')}}" alt="google-play" class="mt-2 img-fluid" width="183" height="54" loading="lazy"></a>
+                                    <a href="{{$appstore->value}}"><img src="{{asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/app-store.png')}}" alt="google-play" class="img-fluid mt-2" width="183" height="54" loading="lazy"></a>
                                   </div>
                             </div>
                         </div>
@@ -1176,7 +1176,7 @@ function editMobileNumber() {
 
                             // Check if the notification is new
                             if (notification.id > lastProcessedId) {
-                                playSound("{{ asset('public/sound/livechat-129007.mp3') }}");
+                                playSound("{{ asset('sound/livechat-129007.mp3') }}");
                                 localStorage.setItem('lastProcessedId', notification.id);
                                 lastProcessedId = notification.id;
                             }

@@ -257,7 +257,7 @@ $token = $session->get('astrotoken');
                             <div class="row w-100">
                                 <!-- Balance Section -->
                                 <div class="col-3 col-sm-3 col-md-auto pr-0 mb-2 mb-md-0">
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/Payment.svg') }}" alt="Wallet" class="img-fluid">
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/Payment.svg') }}" alt="Wallet" class="img-fluid">
                                 </div>
                                 <div class="col-8 col-sm-8 col-md-auto pr-0 mb-2 mb-md-0 ml-3">
                                     <div class="row">

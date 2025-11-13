@@ -100,7 +100,7 @@
 
                 <div class="footer mt-5 text-center">
                     <!-- Image above the text -->
-                    <img src="{{ asset('public/frontend/homeimage/360.png') }}" alt="Completion Image" class="mb-3" style="max-width: 150px;">
+                    <img src="{{ asset('frontend/homeimage/360.png') }}" alt="Completion Image" class="mb-3" style="max-width: 150px;">
                     <div class="message font-30 text-success font-weight-bold">Puja has been finished !</div>
                 </div>
             </div>

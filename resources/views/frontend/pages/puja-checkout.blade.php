@@ -284,7 +284,7 @@
                                                         </div>
                                                     @else
                                                         <img class="img-fluid"
-                                                            src="{{ asset('public/frontend/homeimage/360.png') }}"
+                                                            src="{{ asset('frontend/homeimage/360.png') }}"
                                                             width="62" height="62">
                                                     @endif
                                                     <div class="media-body mt-2" style="text-align: center;">

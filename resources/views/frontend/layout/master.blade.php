@@ -30,13 +30,13 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
     <meta name="twitter:description"
         content="Ask an online {{$professionTitle}} and get instant consultation on top Astrology portal. Accurate astrology predictions and solutions by India's best {{$professionTitle}}s' team." />
     <meta name="twitter:title" content="Online Astrology Consultation, Ask an {{ucfirst($professionTitle)}} - {{ucfirst($appname)}}" />
-    <meta name="twitter:image" content="/public/storage/images/AdminLogo1707194841.png" />
+    <meta name="twitter:image" content="/storage/images/AdminLogo1707194841.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Online Astrology Consultation, Ask an {{ucfirst($professionTitle)}} - {{ucfirst($appname)}}" />
     <meta property="og:description"
         content="Ask an online {{$professionTitle}} and get instant consultation on top Astrology portal. Accurate astrology predictions and solutions by India's best {{$professionTitle}}s' team." />
-    <meta property="og:image" content="/public/storage/images/AdminLogo1707194841.png" />
+    <meta property="og:image" content="/storage/images/AdminLogo1707194841.png" />
     <meta property="og:url" content="index.html" />
     <meta property="og:site_name" content="{{ucfirst($appname)}}" />
 
@@ -53,16 +53,16 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0"
         type="font/woff2" crossorigin />
 
-        <link rel="stylesheet" href="{{ asset('public/frontend/css/newcss.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/newcss.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/app.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link href="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/font/stylesheet.css') }}"
+    <link href="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/font/stylesheet.css') }}"
         rel="stylesheet" />
 
 
@@ -72,9 +72,9 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
     </noscript>
 
     <link rel="stylesheet"
-        href="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/carousel/owl.carousel.min.css') }}">
+    href="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/carousel/owl.carousel.css') }}">
+    href="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/css/carousel/owl.carousel.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
@@ -82,7 +82,7 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
         integrity="sha512-OWGg8FcHstyYFwtjfkiCoYHW2hG3PDWwdtczPAPUcETobBJOVCouKig8rqED0NMLcT9GtE4jw6IT1CSrwY87uw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="{{ asset('public/build/assets/jquery.min.js') }}"></script>
+    <script src="{{ asset('build/assets/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -112,23 +112,23 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
 
 
 <script
-    src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/carousel/owl.carousel.min.js') }}">
+    src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/carousel/owl.carousel.min.js') }}">
 </script>
-<script src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/carousel/owl.carousel.js') }}">
+<script src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/carousel/owl.carousel.js') }}">
 </script>
-<script src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/popper.min.js') }}"></script>
+<script src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/popper.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/bootstrap.min.js') }}">
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/bootstrap.min.js') }}">
 </script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/popper.min.js') }}">
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/popper.min.js') }}">
 </script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/js/momentum.js') }}"></script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/js/bootstrap-datepicker.min.js') }}">
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/js/momentum.js') }}"></script>
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/js/bootstrap-datepicker.min.js') }}">
 </script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/js/js.cookie.min.js') }}"></script>
-<script async src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/bundle/js/AfterLoginJs.js') }}">
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/js/js.cookie.min.js') }}"></script>
+<script async src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/bundle/js/AfterLoginJs.js') }}">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.min.js"
     integrity="sha512-FbWDiO6LEOsPMMxeEvwrJPNzc0cinzzC0cB/+I2NFlfBPFlZJ3JHSYJBtdK7PhMn0VQlCY1qxflEG+rplMwGUg=="
@@ -136,7 +136,7 @@ $walletIcon = SystemFlag::where('name', 'wallet')->value('value');
 
 
 
-<script src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/duDatepicker.js') }}"></script>
+<script src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/js/duDatepicker.js') }}"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 

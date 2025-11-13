@@ -573,7 +573,7 @@
                                 <div class="col-6 col-lg-3 text-center mb-3">
                                     <div class="border border-pink shadow-pink-down rounded-10 p-3 h-100">
                                         <span>
-                                            <img src="{{asset('public/frontend/kundaliimages/mars.svg')}}" alt="">
+                                            <img src="{{asset('frontend/kundaliimages/mars.svg')}}" alt="">
                                         </span>
                                         <p class="mb-0 mt-2">Boy Manglik Report</p>
                                         <p class="color-red mb-0"><strong>{{$KundaliMatching['boyManaglikRpt']['response']['score']}} out of 100</strong></p>
@@ -583,7 +583,7 @@
                                 <div class="col-6 col-lg-3 text-center mb-3">
                                     <div class="border border-pink shadow-pink-down rounded-10 p-3 h-100">
                                         <span>
-                                            <img src="{{asset('public/frontend/kundaliimages/marriage.jpg')}}" height="62.143" width="60" alt="">
+                                            <img src="{{asset('frontend/kundaliimages/marriage.jpg')}}" height="62.143" width="60" alt="">
                                         </span>
                                         <p class="mb-0 mt-2">Kundali Match Points</p>
                                         <p class="color-red mb-0"><strong>{{$KundaliMatching['recordList']['response']['score']}} out of 36</strong></p>
@@ -593,7 +593,7 @@
                                 <div class="col-6 col-lg-3 text-center mb-3">
                                     <div class="border border-pink shadow-pink-down rounded-10 p-3 h-100">
                                         <span>
-                                            <img src="{{asset('public/frontend/kundaliimages/mars.svg')}}" alt="">
+                                            <img src="{{asset('frontend/kundaliimages/mars.svg')}}" alt="">
                                         </span>
                                         <p class="mb-0 mt-2">Girl Manglik Report</p>
                                         <p class="color-red mb-0"><strong>{{$KundaliMatching['girlMangalikRpt']['response']['score']}} out of 100</strong></p>

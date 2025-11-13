@@ -784,7 +784,7 @@ $countries = DB::table('countries')
                 <div class="row py-2">
                     <div class="col-sm-4 col-12 mb-sm-0 mb-3">
                         <div class="border border-danger rounded text-center p-3 h-100">
-                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/verified-icon.svg') }}"
+                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/verified-icon.svg') }}"
                                 class="mb-1">
                             <span class="d-block font-weight-bold">Verified Expert</span>
                             <p class="mb-0">{{ucfirst($professionTitle)}}s</p>
@@ -793,7 +793,7 @@ $countries = DB::table('countries')
 
                     <div class="col-sm-4 col-12 mb-sm-0 mb-3">
                         <div class="border border-danger rounded text-center p-3 h-100">
-                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/24-availability-icon.svg') }}"
+                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/24-availability-icon.svg') }}"
                                 class="mb-1">
                             <span class="d-block font-weight-bold">24/7</span>
                             <p class="mb-0">Availability</p>

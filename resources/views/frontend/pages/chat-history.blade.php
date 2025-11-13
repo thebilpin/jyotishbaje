@@ -148,13 +148,13 @@
             @if($getAstrologer['recordList'][0]['profileImage'])
                 var astroprofile = "/{{ $getAstrologer['recordList'][0]['profileImage'] }}";
             @else
-                var astroprofile = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                var astroprofile = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             @if(authcheck()['profile'])
             var userprofile="/{{ authcheck()['profile'] }}";
             @else
-            var userprofile="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+            var userprofile="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             if (message.isEndMessage == true) {

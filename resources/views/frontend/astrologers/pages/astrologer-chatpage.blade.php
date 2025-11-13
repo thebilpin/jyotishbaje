@@ -504,7 +504,7 @@
                                         <img src="/{{ $getUser['recordList'][0]['profile'] }}" class="rounded-circle mr-1"
                                             alt="Sharon Lessman" width="40" height="40">
                                     @else
-                                        <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                        <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                             class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
                                     @endif
                                 </div>
@@ -553,7 +553,7 @@
                                         @if (!astroauthcheck()) data-target="#loginSignUp" @else data-target="#gift_popup" @endif
                                         class="btn btn-raised  waves-effect waves-light ml-2  d-flex align-items-center justify-content-center"
                                         id="send_gift">
-                                        <img src="{{ asset('public/frontend/homeimage/shareproduct.png') }}"
+                                        <img src="{{ asset('frontend/homeimage/shareproduct.png') }}"
                                             style="height: 25px" alt="">
                                     </a>
                                     <div class="input-group-append">
@@ -970,14 +970,14 @@ function copyPujaReferralLink(pujaId, userId, astrologerId, referralLink) {
                 var astroprofile = "/{{ astroauthcheck()['profile'] }}";
             @else
                 var astroprofile =
-                    "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                    "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             @if ($getUser['recordList'][0]['profile'])
                 var userprofile = "/{{ $getUser['recordList'][0]['profile'] }}";
             @else
                 var userprofile =
-                    "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                    "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             if (message.isEndMessage == true) {

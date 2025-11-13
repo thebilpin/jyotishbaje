@@ -332,7 +332,7 @@ So, if you too are the lucky one who is planning to get married, and hence looki
                                 <div
                                     class="looks-image ilook2 text-center position-relative align-items-center mr-md-3 mr-lg-4">
                                     <div class="looks-img-box position-relative"><img
-                                            src="{{ asset('public/frontend/astrowaycdn/astroway/web/content/images/ads/kundli-matching-image.svg') }}">
+                                            src="{{ asset('frontend/astrowaycdn/astroway/web/content/images/ads/kundli-matching-image.svg') }}">
                                     </div>
                                 </div>
                                 <span class="looks-circle size-2 tops position-absolute"></span>
@@ -354,7 +354,7 @@ So, if you too are the lucky one who is planning to get married, and hence looki
                                 <!-- Image Section -->
                                 <div class="looks-image ilook2 text-center position-relative align-items-center mr-md-3 mr-lg-4">
                                     <div class="looks-img-box position-relative">
-                                        <img src="{{ asset('public/frontend/astrowaycdn/astroway/web/content/images/ads/kundli-matching-image.svg') }}" alt="Indian Bride Image">
+                                        <img src="{{ asset('frontend/astrowaycdn/astroway/web/content/images/ads/kundli-matching-image.svg') }}" alt="Indian Bride Image">
                                     </div>
                                 </div>
                             

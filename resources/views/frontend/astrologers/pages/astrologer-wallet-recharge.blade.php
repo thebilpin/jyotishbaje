@@ -69,7 +69,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 pb-2 text-right">
                                                         <img
-                                                            src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/pay-safely.png') }}">
+                                                            src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/pay-safely.png') }}">
                                                     </div>
                                                 </div>
                                                 <div
@@ -118,7 +118,7 @@
                                                                         <div class="p-2 align-items-center total-cashback-amount position-relative d-flex"
                                                                             id="total-cashback-amount">
                                                                             <img
-                                                                                src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/cashback-icon.svg') }}">
+                                                                                src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/cashback-icon.svg') }}">
                                                                             <span class="ml-3">
                                                                                 <span class="d-block font-14">
                                                                                     <span id="extracashback"

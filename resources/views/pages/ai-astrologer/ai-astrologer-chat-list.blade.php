@@ -141,7 +141,7 @@ $token = $session->get('token');
                                     <img src="{{ asset($astro->image) }}"width="80" height="80"
                                     style="border-radius:50%;" loading="lazy">
                                     @else
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                     width="80" height="80" style="border-radius:50%;">
                                     @endif
                                 </div>

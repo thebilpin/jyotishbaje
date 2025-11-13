@@ -16,7 +16,7 @@
 @if($pujalists->isEmpty())
     <div class="container mt-5 mb-5 justify-content-center">
         <div class="text-center">
-            <img src="{{ asset('public/frontend/homeimage/360.png') }}" alt="No Puja Found" class="img-fluid" />
+            <img src="{{ asset('frontend/homeimage/360.png') }}" alt="No Puja Found" class="img-fluid" />
             <h3>No Puja Found !</h3>
         </div>
     </div>

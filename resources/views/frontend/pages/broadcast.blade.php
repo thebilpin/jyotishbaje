@@ -291,7 +291,7 @@
                     </div>
                     @else
                     <div class="carousel slide product-large-image position-relative">
-                        <img class="border-30 w-100" id="PujaImg0" src="{{ asset('public/frontend/homeimage/360.png') }}"
+                        <img class="border-30 w-100" id="PujaImg0" src="{{ asset('frontend/homeimage/360.png') }}"
                             alt="Puja Image 0">
                     </div>
                     @endif
@@ -402,7 +402,7 @@
     </div>
     @endsection
     @section('scripts')
-    <script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+    <script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
         <script>
             const roomId = "{{ $roomId }}"; // Get roomId from Laravel
             const APP_ID = "{{$agoraAppIdValue->value}}"; // Replace with your Agora App ID

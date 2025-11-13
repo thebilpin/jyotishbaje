@@ -41,7 +41,7 @@
                         <div class="d-flex align-items-center">
                             <div class="row flex-nowrap align-items-center">
                                 <div class="col-auto pr-0">
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/Payment.svg') }}"
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/Payment.svg') }}"
                                         alt="Wallet">
                                 </div>
                                 <div class="col-auto pr-0">

@@ -28,7 +28,7 @@
                     </p>
                 </div>
                 <div>
-                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/live-event.png') }}"
+                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/astroway/images/livestream/live-event.png') }}"
                         class="img-fluid" width="74" height="70" alt="live-event">
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 @foreach ($liveastro['recordList'] as $live)
 
                 <div class="live-astrologer gif-animation-enable position-relative m-2"
-                    style="background:url('{{asset('public/frontend/astrowaycdn/astroway/category/banner/643714c2-9893-4183-85fc-ed89513a2a0d.jpg')}}')">
+                    style="background:url('{{asset('frontend/astrowaycdn/astroway/category/banner/643714c2-9893-4183-85fc-ed89513a2a0d.jpg')}}')">
                     <div class="position-absolute top-part">
                         <span class="bg-red px-2 text-white d-inline-flex align-items-center rounded font-12"><i
                                 class="fa fa-circle font-11 mr-1"></i>Live</span>
@@ -60,7 +60,7 @@
                             @if($live['profileImage'])
                             <img width="100" height="145" loading="lazy" class="expert-profile-pic" src="{{ Str::startsWith($live['profileImage'], ['http://','https://']) ? $live['profileImage'] : '/' . $live['profileImage'] }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Astro image" />
                             @else
-                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                             class="expert-profile-pic"  width="100" height="145" loading="lazy">
                             @endif
                         </div>

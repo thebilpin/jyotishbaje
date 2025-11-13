@@ -438,7 +438,7 @@
                                     @if($getAstrologer['recordList'][0]['profileImage'])
                                     <img width="40" height="40" class="rounded-circle mr-1" src="{{ Str::startsWith($getAstrologer['recordList'][0]['profileImage'], ['http://','https://']) ? $getAstrologer['recordList'][0]['profileImage'] : $getAstrologer['recordList'][0]['profileImage'] }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Astro Image" />
                                     @else
-                                    <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                    <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                         class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
                                     @endif
                                 </div>
@@ -885,13 +885,13 @@
             @if($getAstrologer['recordList'][0]['profileImage'])
                 var astroprofile = "{{ $getAstrologer['recordList'][0]['profileImage'] }}";
             @else
-                var astroprofile = "{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+                var astroprofile = "{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             @if(authcheck()['profile'])
             var userprofile="/{{ authcheck()['profile'] }}";
             @else
-            var userprofile="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
+            var userprofile="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}";
             @endif
 
             if (message.isEndMessage == true) {

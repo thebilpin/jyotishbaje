@@ -433,7 +433,7 @@ DB::raw(
                                 <img src="/{{ astroauthcheck()['profile'] }}" alt="User"
                                     class="img-fluid rounded" style="height: 50px;width:50px">
                                 @else
-                                <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
+                                <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img.png') }}"
                                     alt="" class="psychic-img img-fluid rounded">
                                 @endif
 
@@ -452,7 +452,7 @@ DB::raw(
                                             <img src="/{{ astroauthcheck()['profile'] }}" alt="User"
                                                 class="img-fluid astrostory rounded-circle">
                                             @else
-                                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                                 alt="User" class="img-fluid astrostory rounded-circle">
                                             @endif
                                             <i class="fa-solid fa-circle-plus position-absolute"
@@ -465,7 +465,7 @@ DB::raw(
                                             <img src="/{{ astroauthcheck()['profile'] }}" alt="User"
                                                 class="img-fluid rounded">
                                             @else
-                                            <img src="{{ asset('public/frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
+                                            <img src="{{ asset('frontend/astrowaycdn/dashaspeaks/web/content/images/user-img-new.png') }}"
                                                 alt="User" class="img-fluid rounded">
                                             @endif
                                             <i class="fa-solid fa-circle-plus position-absolute"
@@ -1204,7 +1204,7 @@ setInterval(function () {
 
                 // Check if the notification is new and play sound
                 if (notification.id > lastProcessedId ) {
-                    playSound("{{ asset('public/sound/livechat-129007.mp3') }}");
+                    playSound("{{ asset('sound/livechat-129007.mp3') }}");
                     lastProcessedId = notification.id; // Update the lastProcessedId
                     localStorage.setItem('lastProcessedId', lastProcessedId); // Save to localStorage
                 }

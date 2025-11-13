@@ -63,7 +63,7 @@
 
 @if (isset($astrologyVideo) && count($astrologyVideo) > 0)
         <section class="py-5 bg-white" id="calculator"
-            style="background: url('{{ asset('public/frontend/homeimage/videobackground.jpeg') }}');">
+            style="background: url('{{ asset('frontend/homeimage/videobackground.jpeg') }}');">
             <div class="container-fluid">
                 <h2 class="text-center text-black py-3 font-28">Astrology Videos</h2>
         
@@ -81,7 +81,7 @@
                                     <img class="video-thumbnail img-fluid" style="height:160px" src="{{ Str::startsWith($video->coverImage, ['http://','https://']) ? $video->coverImage : '/' . $video->coverImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $video->coverImage }}')" />
 
                                     <img style="cursor: pointer;" class="position-absolute youtube-icon"
-                                        src="{{ asset('public/frontend/homeimage/youtube.svg') }}" alt="">
+                                        src="{{ asset('frontend/homeimage/youtube.svg') }}" alt="">
                                     <div class="video-title text-center mt-2">{{ $video->videoTitle }}</div>
                                 </div>
                             </a>
@@ -99,7 +99,7 @@
                                     <img class="video-thumbnail img-fluid" style="height:160px"  src="{{ Str::startsWith($video->coverImage, ['http://','https://']) ? $video->coverImage : '/' . $video->coverImage }}" onerror="this.onerror=null;this.src='/build/assets/images/person.png';" alt="Customer image" onclick="openImage('{{ $video->coverImage }}')" />
 
                                     <img style="cursor: pointer;" class="position-absolute youtube-icon"
-                                        src="{{ asset('public/frontend/homeimage/youtube.svg') }}" alt="">
+                                        src="{{ asset('frontend/homeimage/youtube.svg') }}" alt="">
                                     <div class="video-title text-center mt-2">{{ $video->videoTitle }}</div>
                                 </div>
                             </a>

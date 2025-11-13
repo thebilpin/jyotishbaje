@@ -7,7 +7,7 @@ $token = $session->get('token');
 @php
     $call_method = $callrequest->call_method ?? 'agora';
 @endphp
-<!-- <link rel="stylesheet" href="{{ asset('public/frontend/agora/index.css') }}"> -->
+<!-- <link rel="stylesheet" href="{{ asset('frontend/agora/index.css') }}"> -->
 <style>
     @media only screen and (max-width: 767px) {
 
@@ -360,8 +360,8 @@ $call_type = request()->query('call_type');
 {{-- ===================== CALL SCRIPTS ===================== --}}
 @if($call_method == 'agora')
     {{-- ===================== AGORA SCRIPTS ===================== --}}
-    <script src="{{ asset('public/frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
-    <script src="{{ asset('public/frontend/agora/index.js') }}"></script>
+    <script src="{{ asset('frontend/agora/AgoraRTC_N-4.20.2.js') }}"></script>
+    <script src="{{ asset('frontend/agora/index.js') }}"></script>
 
 @elseif($call_method == 'zegocloud')
     {{-- ===================== ZEGOCLOUD SCRIPT ===================== --}}
