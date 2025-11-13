@@ -10,6 +10,14 @@ use App\Models\UserModel\UserWallet;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *

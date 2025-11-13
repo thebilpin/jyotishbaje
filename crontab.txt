@@ -1,0 +1,17 @@
+# Cron jobs for Laravel application
+# Add these to your crontab using: crontab -e
+
+# Laravel scheduler - runs every minute
+* * * * * cd /workspaces/jyotishbaje && php artisan schedule:run >> /dev/null 2>&1
+
+# Daily database backup at 2 AM
+0 2 * * * cd /workspaces/jyotishbaje && ./automate.sh backup
+
+# Weekly cache optimization on Sundays at 3 AM
+0 3 * * 0 cd /workspaces/jyotishbaje && ./automate.sh cache
+
+# Monthly cleanup of old log files (keep last 30 days)
+0 4 1 * * find /workspaces/jyotishbaje/storage/logs -name "*.log" -type f -mtime +30 -delete
+
+# Daily notification reminders at 9 AM
+0 9 * * * cd /workspaces/jyotishbaje && php artisan queue:work --tries=3 --timeout=60 --stop-when-empty

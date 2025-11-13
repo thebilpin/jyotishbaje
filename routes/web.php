@@ -145,13 +145,13 @@ Route::get('get-session/{token}', [SessionController::class, 'storeSession'])->n
 
 //Controller
 
-Route::get('skills', [SkillController::class, 'addSkill'])->name('skills');
+Route::get('skills', [SkillController::class, 'addSkill'])->name('add-skills');
 Route::post('addSkillApi', [SkillController::class, 'addSkillApi'])->name('addSkillApi')->middleware('permission:add');
-Route::get('skills', [SkillController::class, 'skill'])->name('skills');
+Route::get('skills', [SkillController::class, 'skill'])->name('skills-list');
 Route::post('skillStatusApi', [SkillController::class, 'skillStatusApi'])->name('skillStatusApi')->middleware('permission:status');
 Route::delete('skills', [SkillController::class, 'deleteSkill'])->name('deleteSkill')->middleware('permission:delete');
 Route::delete('gifts', [GiftController::class, 'deleteGift'])->name('deleteGift')->middleware('permission:delete');
-Route::post('skills', [SkillController::class, 'getGift'])->name('skills');
+Route::post('skills', [SkillController::class, 'getGift'])->name('skills-get-gift');
 Route::get($professionTitle.'Categories', [AstrologerCategoryController::class, 'addAstrolgerCategory'])->name('astrologerCategories');
 Route::post($professionTitle.'CategoryApi', [AstrologerCategoryController::class, 'addAstrolgerCategoryApi'])->name('addAstrolgerCategoryApi')->middleware('permission:add');
 Route::delete('deleteUser', [CustomerController::class, 'deleteUser'])->name('deleteUser')->middleware('permission:delete');
@@ -314,7 +314,7 @@ Route::group(['middleware' => ['web']], function () use($professionTitle) {
 
         Route::get($professionTitle.'s', 'astrologerDetail')->name('astrologer-detail');
         Route::get('add-'.$professionTitle, 'addAstrologer')->name('add-astrologer');
-        Route::get('skills', 'skillList')->name('skills');
+        Route::get('skills', 'skillList')->name('admin-skills');
         Route::get('add-skill', 'addSkill')->name('add-skill');
         Route::get('gifts', 'giftList')->name('gifts');
         Route::get('commissions', 'commissionList')->name('commissions');
@@ -348,7 +348,7 @@ Route::group(['middleware' => ['web']], function () use($professionTitle) {
         Route::get('dailyHoroscope', 'dailyHoroscope')->name('dailyHoroscope');
         Route::get('withdrawalRequests', 'withdrawlRequest')->name('withdrawalRequests');
         //Get data Controller
-        Route::get('skills', [SkillController::class, 'getSkill'])->name('skills');
+        Route::get('skills', [SkillController::class, 'getSkill'])->name('get-skills');
         Route::get($professionTitle.'Review', [ReportBlockController::class, 'getReportBlock'])->name('astrologerReview');
         Route::get('block'.$professionTitle, [BlockAstrologerController::class, 'getBlockAstrologer'])->name('blockAstrologer');
         Route::post('block'.$professionTitle, [BlockAstrologerController::class, 'getBlockAstrologer'])->name('blockAstrologer');

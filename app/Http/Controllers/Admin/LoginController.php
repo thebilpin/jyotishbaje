@@ -24,7 +24,7 @@ class LoginController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-            $user = DB::table('users')->where('email', '=', $request->email)->where('isDelete', false)->get();
+            $user = DB::table('admin')->where('email', '=', $request->email)->get();
             if ($validator->fails()) {
                 return response()->json([
                     'error' => $validator->getMessageBag()->toArray(),
@@ -39,7 +39,7 @@ class LoginController extends Controller
                     'error' => ['Invalid Credentials'],
                 ]);
             }
-            if ($request->email && $request->password && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'isDelete' => 0])) {
+            if ($request->email && $request->password && Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $userId = Auth::user()->id;
                 $teamMember = DB::table('teammember')->where('userId', $userId)->first();
                 if ($teamMember) {
