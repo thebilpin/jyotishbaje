@@ -23,6 +23,13 @@ if [ ! -L "public/public" ]; then
 fi
 
 php artisan package:discover --ansi
+
+# Clear all caches first to ensure fresh compilation
+php artisan view:clear
+php artisan config:clear
+php artisan cache:clear
+
+# Then rebuild caches
 php artisan config:cache
 php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
 php artisan view:cache
