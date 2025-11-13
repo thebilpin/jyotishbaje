@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('product_details', function (Blueprint $table) {
+            $table->id();
+            $table->string('astromallProductId')->nullable();
+            $table->string('question')->nullable();
+            $table->longText('answer')->nullable();
+            $table->string('isActive')->default(1)->nullable();
+            $table->string('isDelete')->default(0)->nullable();
+            $table->timestamps();
+        });
+DB::unprepared(file_get_contents(database_path('sql/product_details.sql')));
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('product_details');
+    }
+};
+
+
+
+
+
+
+
+
+
+
+

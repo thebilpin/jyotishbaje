@@ -1,0 +1,3 @@
+INSERT INTO `courses` (`id`, `name`, `description`, `image`, `course_price`, `course_price_usd`, `course_category_id`, `course_badge`, `isActive`, `created_at`, `updated_at`) VALUES
+(2, 'Basics of Vedic Astrology', 'Basics of Vedic Astrology', 'public/storage/images/course_21728391822.png', 1000, 15, 1, '[\"vedic master\"]', 1, '2024-10-08 07:17:22', '2024-11-27 11:43:59'),
+(3, 'Planets and Zodiac Signs', 'Understanding these can help in character development, relationship compatibility, and personal growth.', 'public/storage/images/course_31728650316.png', 500, 10, 1, '[\"TEST\"]', 1, '2024-10-11 18:08:36', '2024-11-27 11:43:51');

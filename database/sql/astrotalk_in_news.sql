@@ -1,0 +1,4 @@
+INSERT INTO `astrotalk_in_news` (`id`, `newsDate`, `channel`, `link`, `bannerImage`, `description`, `isActive`, `isDelete`, `created_at`, `updated_at`, `createdBy`, `modifiedBy`) VALUES
+(2, '2024-01-29 00:00:00', 'NDTV', 'https://www.ndtv.com/', 'public/storage/images/bannerImage_217090539591709053959.png', 'Astroway has served over 2 crore customers in the last 4 years and does business of INR 41 lacs daily.', 1, 0, '2022-10-31 04:11:21', '2024-02-27 22:42:39', 5, 5),
+(7, '2024-01-29 00:00:00', 'IndiaTV', 'https://www.abplive.com/', 'public/storage/images/bannerImage_71706549325.png', 'IndiaTV covers the story of astroway 3qwfefdcedf', 1, 0, '2024-01-29 22:58:45', '2025-09-29 12:44:53', 5, 5),
+(10, '2024-02-29 00:00:00', 'Apna TV', 'https://www.ndtv.com/', 'public/storage/images/bannerImage_101709050563.png', 'Dummy News Dummy NewsDummy NewsDummy NewsDummy NewsDummy News Dummy News', 1, 0, '2024-02-27 21:46:03', '2025-01-13 17:16:17', 1, 1);

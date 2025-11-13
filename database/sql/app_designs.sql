@@ -1,0 +1,6 @@
+INSERT INTO `app_designs` (`id`, `title`, `image`, `design_id`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'First Design', '[\"public\\/storage\\/appdesign\\/home\\/0.jpg\",\"public\\/storage\\/appdesign\\/call\\/0.jpg\",\"public\\/storage\\/appdesign\\/chat\\/0.jpg\"]', 0, '0', '2025-03-28 09:28:40', '2025-07-03 09:59:04'),
+(2, 'Second Design', '[\"public\\/storage\\/appdesign\\/home\\/1.jpg\",\"public\\/storage\\/appdesign\\/call\\/1.jpg\",\"public\\/storage\\/appdesign\\/chat\\/1.jpg\"]', 1, '0', '2025-03-28 09:29:31', '2025-07-03 09:59:04'),
+(3, 'Third Design', '[\"public\\/storage\\/appdesign\\/home\\/2.jpg\",\"public\\/storage\\/appdesign\\/call\\/2.jpg\",\"public\\/storage\\/appdesign\\/chat\\/2.jpg\"]', 2, '0', '2025-03-28 09:29:54', '2025-07-03 09:59:04'),
+(4, 'Fourth Design', '[\"public\\/storage\\/appdesign\\/home\\/3.jpg\",\"public\\/storage\\/appdesign\\/call\\/3.jpg\",\"public\\/storage\\/appdesign\\/chat\\/3.jpg\"]', 3, '0', '2025-03-28 09:30:24', '2025-07-03 09:59:04'),
+(5, 'Fifth Design', '[\"public\\/storage\\/appdesign\\/home\\/4.jpg\",\"public\\/storage\\/appdesign\\/call\\/4.jpg\",\"public\\/storage\\/appdesign\\/chat\\/4.jpg\"]', 4, '1', '2025-03-28 09:30:47', '2025-07-03 09:59:04');

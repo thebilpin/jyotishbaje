@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('user_device_details', function (Blueprint $table) {
+            $table->id();
+            $table->string('userId')->nullable();
+            $table->string('name', 225)->nullable();
+            $table->string('appId', 20)->nullable();
+            $table->string('deviceId')->nullable();
+            $table->string('fcmToken')->nullable();
+            $table->string('subscription_id')->nullable();
+            $table->string('subscription_id_web')->nullable();
+            $table->string('deviceLocation')->nullable();
+            $table->string('deviceManufacturer')->nullable();
+            $table->string('deviceModel')->nullable();
+            $table->string('appVersion')->nullable();
+            $table->string('isActive')->nullable()->nullable();
+            $table->string('isDelete')->nullable()->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('user_device_details');
+    }
+};
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+INSERT INTO `teammember` (`id`, `name`, `contactNo`, `email`, `password`, `isActive`, `isDelete`, `created_at`, `updated_at`, `profile`, `teamRoleId`, `userId`) VALUES
+(17, 'Nishi', '1234567890', 'jon@gmail.com', '$2y$10$t//k4LA74dEVEUCWs393k.I/OYndoyugvlT0wMBrlVfJ6nVmUFzdS', 1, 1, '2023-05-02 11:00:10', '2023-05-02 11:00:46', 'public/storage/images/teamMember_3331683005431.png', 23, 333),
+(18, 'Nishi', '1234567812', 'ram@gmail.com', '$2y$10$TdXIeb5u.81pywtVkvLaauD/3W8iMJ1uFUk2GBC3hCigmwh.vXGV2', 1, 1, '2023-05-02 11:38:08', '2023-05-02 11:38:08', 'public/storage/images/teamMember_3341683007688.png', 23, 334),
+(20, 'Nishi', '1234567823', 'shyam@gmail.com', '$2y$10$4ClhTRqZALgk3WH.TORpKedOsVwVnpLLoaMUXPiYRd/E/MF8Msdsy', 1, 1, '2023-05-02 18:20:18', '2023-05-03 11:47:13', NULL, 23, 336),
+(21, 'new', '1234567845', 'karan@demo.com', '$2y$10$hiWQWeUmSOiNx96B59YscuKT4cYUS519hUF3APPl.7F8z.AZaVhv6', 1, 1, '2023-05-04 13:35:48', '2023-05-04 13:35:48', 'public/storage/images/teamMember_3371683187548.png', 25, 337),
+(22, 'diploy', '9999999999', 'barun@gmail.com', '$2y$10$OL3hZzgJJEWFuhevtNpOTu0fJcd7Cg3gkOV5YXBWYcGsCvNrz6iOG', 1, 0, '2024-02-22 10:35:03', '2024-02-23 19:48:41', NULL, 23, 597),
+(23, 'Bhushan Borse', '1234567867', 'bhusanborse@gmail.com', '$2y$10$enlITIJiCgetFAjfBJa/yOB/wVgkGdVNJbEZjCf2Sr9lirdRtomcm', 1, 1, '2024-02-23 12:46:22', '2024-02-23 12:46:22', 'public/storage/images/teamMember_5981708672582.png', 1, 598),
+(24, 'diploy', '1234567826', 'harsh@gmail.in', '$2y$10$5DwmHhsk2BdkGs58C5rUm.hjgo7yXkWkOXFFdF87Lxoxt1dcPGeK.', 1, 0, '2024-02-23 19:49:33', '2024-02-23 19:49:33', NULL, 1, 599),
+(25, 'sarthak', '123487898', 'sarthak@gmail.com', '$2y$10$bzBspCCVwIE258Om8E87Qu01Wtg1mfWtKlAlLevE3droSdtj/FqIG', 1, 0, '2024-03-26 16:48:01', '2024-12-20 15:21:57', 'public/storage/images/teamMember_7211734688317.png', 25, 721),
+(26, 'demo from ad', '8888888888', 'de@email.com', '$2y$10$kHKcVA3SXjT4kJJ5ho6lN.q8HarZKb3r57fn12nN8QMZk3A8/Umwy', 1, 1, '2024-12-20 15:33:04', '2024-12-20 15:33:16', NULL, 25, 913),
+(27, 'karann testing', '1234534890', 'karantesting@gmail.com', '$2y$10$mPI9V7zCJeRIBEJgHBDHLe/HvCd/hpSucwdLl8foszQzSRc4eo2s2', 1, 0, '2025-09-01 12:44:07', '2025-09-01 12:44:07', NULL, 26, 1104);
