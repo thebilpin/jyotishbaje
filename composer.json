@@ -53,6 +53,20 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "App\\Services\\": "app/services/",
+            "App\\Service\\": [
+                "app/Service/",
+                "app/paygate/Service/"
+            ],
+            "App\\Components\\Payment\\": [
+                "app/Components/Payment/",
+                "app/paygate/Components/Payment/"
+            ],
+            "App\\Http\\Controllers\\Frontend\\AiAstrologer\\": "app/Http/Controllers/frontend/AiAstrologer/",
+            "App\\Http\\Controllers\\API\\Astrologer\\": "app/Http/Controllers/API/Astrologer/",
+            "App\\Http\\Controllers\\Admin\\": "app/Http/Controllers/Admin/",
+            "App\\Models\\AstrologerModel\\": "app/Models/AstrologerModel/",
+            "App\\Jobs\\": "app/Models/Jobs/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "ZEGO\\": "vendor/zego/src/ZEGO"
@@ -77,8 +91,7 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

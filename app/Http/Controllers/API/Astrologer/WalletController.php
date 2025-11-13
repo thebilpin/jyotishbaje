@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\API\Astrologer;
 
 use App\Http\Controllers\Controller;
-use App\Models\AstrologerModel\WithDrawRequest;
+use App\Models\AstrologerModel\WithdrawRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +34,7 @@ class WalletController extends Controller
                     'status' => 400,
                 ], 400);
             }
-            WithDrawRequest::create([
+            WithdrawRequest::create([
                 'astrologerId' => $req->astrologerId,
                 'withdrawAmount' => $req->withdrawAmount,
                 'status' => 'Pending',
@@ -78,7 +78,7 @@ class WalletController extends Controller
                     'status' => 400,
                 ], 400);
             }
-            $withdrawRequest = WithDrawRequest::find($req->id);
+            $withdrawRequest = WithdrawRequest::find($req->id);
             if ($withdrawRequest) {
                 $withdrawRequest->astrologerId = $req->astrologerId;
                 $withdrawRequest->withdrawAmount = $req->withdrawAmount;

@@ -1,5 +1,6 @@
 <?php
-namespace app\Http\Controllers\Admin;
+
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserModel\HororscopeSign;
@@ -15,7 +16,7 @@ use Exception;
 
 
 define('LOGINPATH', '/admin/login');
-class DailyHoroScopeInsightController extends Controller
+class DailyHoroscopeInsightController extends Controller
 {
     public function getDailyHoroscopeInsight(Request $request)
     {
