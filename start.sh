@@ -16,6 +16,12 @@ php artisan migrate --force
 echo "Seeding initial data..."
 php artisan db:seed --class=InitialDataSeeder --force || echo "Seeder already ran or failed, continuing..."
 
+# Create symlink for public directory to fix asset paths
+if [ ! -L "public/public" ]; then
+    echo "Creating symlink for public assets..."
+    ln -s /app/public /app/public/public
+fi
+
 php artisan package:discover --ansi
 php artisan config:cache
 php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
