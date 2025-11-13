@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendNotificationJob;
 use App\Models\Notification;
 use App\services\FCMService;
 use App\services\OneSignalService;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
-use Exception;
 
 define('LOGINPATH', '/admin/login');
 
@@ -32,7 +30,7 @@ class NotificationController extends Controller
             if (Auth::guard('web')->check()) {
                 Notification::create([
                     'title' => $req->title,
-                    'description' => $req->did,
+                    'description' => $req->description,
                     'createdBy' => Auth()->user()->id,
                     'modifiedBy' => Auth()->user()->id,
                 ]);
@@ -166,60 +164,125 @@ class NotificationController extends Controller
         try {
             $notification = Notification::find($req->notification_id);
             $req->userIds = ($req->userIds === ['all']) ? [] : $req->userIds;
-            $authUserId = 1;
-            // ✅ If auto_send_time is provided → save in scheduler table instead of sending now
-            if (!empty($req->auto_send_time)) {
-                $this->saveScheduledNotification($req, $notification, $authUserId);
-                return response()->json([
-                    'success' => ['user_notifications_scheduler created successfully'],
-                ]);
-            }
-    
+
             if ($req->userIds && count(json_decode(json_encode($req->userIds))) > 0) {
-                // Dispatch jobs for specific users
+                // Send notification to specific users
                 foreach (json_decode(json_encode($req->userIds)) as $user) {
-                    SendNotificationJob::dispatch($notification, $user, $authUserId);
+                    $this->sendNotificationToUser($notification, $user);
                 }
             } elseif ($req->role && $req->role == 'User') {
-                // Dispatch jobs for all users
-                $this->dispatchNotificationsForRole($notification, 3, $authUserId);
+                // Send notification to all users
+                $this->sendNotificationToAllUsers($notification);
             } elseif ($req->role && $req->role == 'Astrologer') {
-                // Dispatch jobs for all astrologers
-                $this->dispatchNotificationsForRole($notification, 2, $authUserId);
+                // Send notification to all astrologers
+                $this->sendNotificationToAstrologers($notification);
             } elseif ($req->role == 'User Never Recharged') {
-                // Dispatch jobs for users who never recharged
-                $this->dispatchNotificationsForNeverRecharged($notification, $authUserId);
+                // Send notification to users who never recharged
+                $this->sendNotificationToUsersNeverRecharged($notification);
             } elseif ($req->role == 'User Not Used Free Chat/Call') {
-                // Dispatch jobs for users who haven't used free chat/call
-                $this->dispatchNotificationsForNotUsedFreeChatOrCall($notification, $authUserId);
+                // Send notification to users who haven't used free chat/call
+                $this->sendNotificationToUsersNotUsedFreeChatOrCall($notification);
             } else {
-                // Dispatch jobs for all users by default
-                $this->dispatchNotificationsForAll($notification, $authUserId);
+                // Send notification to all users by default
+                $this->sendNotificationToAll($notification);
             }
-    
+
             return response()->json([
-                'success' => ['Notifications are being processed in the background'],
+                'success' => ['Send Notification Successfully'],
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => [$e->getMessage()]]);
         }
     }
-    
-    private function dispatchNotificationsForRole($notification, $roleId, $authUserId)
+
+
+    private function sendNotificationToUser($notification, $userId)
     {
-        $userIds = DB::table('user_device_details')
+        $userDeviceDetail = DB::table('user_device_details')
+            ->where('userId', '=', $userId)
+            ->select('subscription_id','subscription_id_web')
+            ->first();
+
+        // dd(array_values((array)$userDeviceDetail));
+        $userDeviceDetails=array_values((array)$userDeviceDetail);
+
+            $oneSignalService = new OneSignalService();
+
+        if (!empty($userDeviceDetail)) {
+            $notificationData = [
+                'title' => $notification->title,
+                'body' => ['description' => $notification->description, "notificationType" => 15],
+                // 'content_available' => true,
+                // 'priority'=>'custom'
+            ];
+
+            // Call your OneSignal service to send the notification
+            $response=$oneSignalService->sendNotification($userDeviceDetails, $notificationData);
+            
+
+            // Log the notification in the database
+            DB::table('user_notifications')->insert([
+                'userId' => $userId,
+                'title' => $notification->title,
+                'description' => $notification->description,
+                'createdBy' => auth()->user()->id,
+                'modifiedBy' => auth()->user()->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+    }
+
+
+    private function sendNotificationToAllUsers($notification)
+    {
+        //$userDeviceDetails = DB::table('user_device_details')->get();
+    $userDeviceDetails = DB::table('user_device_details')
             ->join('user_roles', 'user_roles.userId', '=', 'user_device_details.userId')
-            ->where('user_roles.roleId', '=', $roleId)
+            ->where('user_roles.roleId', '=', 3)
             ->where('isActive', 1)
             ->where('isDelete', 0)
-            ->pluck('user_device_details.userId');
-    
-        $this->dispatchNotificationsForUsers($notification, $userIds, $authUserId);
+            ->select('user_device_details.*')
+            ->get();
+
+        if ($userDeviceDetails->isNotEmpty()) {
+            foreach ($userDeviceDetails as $detail) {
+                $this->sendNotificationToUser($notification, $detail->userId);
+            }
+        }
     }
-    
-    private function dispatchNotificationsForNeverRecharged($notification, $authUserId)
+
+    private function sendNotificationToAll($notification)
     {
-        $userIds = DB::table('user_device_details')
+        $userDeviceDetails = DB::table('user_device_details')->get();
+
+        if ($userDeviceDetails->isNotEmpty()) {
+            foreach ($userDeviceDetails as $detail) {
+                $this->sendNotificationToUser($notification, $detail->userId);
+            }
+        }
+    }
+
+    private function sendNotificationToAstrologers($notification)
+    {
+        $userDeviceDetail = DB::table('user_device_details')
+            ->join('user_roles', 'user_roles.userId', '=', 'user_device_details.userId')
+            ->where('user_roles.roleId', '=', 2)
+            ->where('isActive', 1)
+            ->where('isDelete', 0)
+            ->select('user_device_details.*')
+            ->get();
+
+        if ($userDeviceDetail->isNotEmpty()) {
+            foreach ($userDeviceDetail as $detail) {
+                $this->sendNotificationToUser($notification, $detail->userId);
+            }
+        }
+    }
+
+    private function sendNotificationToUsersNeverRecharged($notification)
+    {
+        $userDeviceDetails = DB::table('user_device_details')
             ->join('user_roles', 'user_roles.userId', '=', 'user_device_details.userId')
             ->where('user_roles.roleId', '=', 3)
             ->whereNotExists(function ($query) {
@@ -227,14 +290,18 @@ class NotificationController extends Controller
                     ->from('user_wallets')
                     ->whereRaw('user_device_details.userId = user_wallets.userId');
             })
-            ->pluck('user_device_details.userId');
-    
-        $this->dispatchNotificationsForUsers($notification, $userIds, $authUserId);
+            ->get();
+
+        if ($userDeviceDetails->isNotEmpty()) {
+            foreach ($userDeviceDetails as $detail) {
+                $this->sendNotificationToUser($notification, $detail->userId);
+            }
+        }
     }
-    
-    private function dispatchNotificationsForNotUsedFreeChatOrCall($notification, $authUserId)
+
+    private function sendNotificationToUsersNotUsedFreeChatOrCall($notification)
     {
-        $userIds = DB::table('user_device_details')
+        $userDeviceDetails = DB::table('user_device_details')
             ->join('user_roles', 'user_roles.userId', '=', 'user_device_details.userId')
             ->where('user_roles.roleId', '=', 3)
             ->whereNotExists(function ($query) {
@@ -247,88 +314,16 @@ class NotificationController extends Controller
                             ->whereRaw('user_device_details.userId = callrequest.userId');
                     });
             })
-            ->pluck('user_device_details.userId');
-    
-        $this->dispatchNotificationsForUsers($notification, $userIds, $authUserId);
-    }
-    
-    private function dispatchNotificationsForAll($notification, $authUserId)
-    {
-        $userIds = DB::table('user_device_details')->pluck('userId');
-        
-        $this->dispatchNotificationsForUsers($notification, $userIds, $authUserId);
-        
-    }
-    
-    private function dispatchNotificationsForUsers($notification, $userIds, $authUserId)
-    {
-        foreach ($userIds as $userId) {
-            SendNotificationJob::dispatch($notification, $userId, $authUserId);
+            ->get();
+
+        if ($userDeviceDetails->isNotEmpty()) {
+            foreach ($userDeviceDetails as $detail) {
+                $this->sendNotificationToUser($notification, $detail->userId);
+            }
         }
-       
-    }
-    private function saveScheduledNotification($req, $notification, $authUserId)
-    {
-    $userIds = [];
-
-    // If users are selected, use them
-    if ($req->userIds && count(json_decode(json_encode($req->userIds))) > 0) {
-        $userIds = json_decode(json_encode($req->userIds));
-    }
-    // If role is selected, fetch users by role
-    elseif ($req->role && $req->role == 'User') {
-        $userIds = DB::table('user_roles')->where('roleId', 3)->pluck('userId');
-    } elseif ($req->role && $req->role == 'Astrologer') {
-        $userIds = DB::table('user_roles')->where('roleId', 2)->pluck('userId');
-    } elseif ($req->role && $req->role == 'User Never Recharged') {
-        $userIds = DB::table('user_roles')
-            ->where('roleId', 3)
-            ->whereNotExists(function ($query) {
-                $query->select(DB::raw(1))
-                    ->from('user_wallets')
-                    ->whereRaw('user_roles.userId = user_wallets.userId');
-            })
-            ->pluck('userId');
-    } elseif ($req->role && $req->role == 'User Not Used Free Chat/Call') {
-        $userIds = DB::table('user_roles')
-            ->where('roleId', 3)
-            ->whereNotExists(function ($query) {
-                $query->select(DB::raw(1))
-                    ->from('chatrequest')
-                    ->whereRaw('user_roles.userId = chatrequest.userId')
-                    ->orWhereExists(function ($subquery) {
-                        $subquery->select(DB::raw(1))
-                            ->from('callrequest')
-                            ->whereRaw('user_roles.userId = callrequest.userId');
-                    });
-            })
-            ->pluck('userId');
-    } else {
-        // All users
-        $userIds = DB::table('user_device_details')->pluck('userId');
     }
 
-    foreach ($userIds as $userId) {
-        DB::table('user_notifications_scheduler')->insert([
-            'userId'            => $userId,
-            'title'             => $notification->title ?? null,
-            'description'       => $notification->description ?? null,
-            'notificationId'    => $notification->id,
-            'chatRequestId'     => null,
-            'callRequestId'     => null,
-            'isActive'          => 1,
-            'isDelete'          => 0,
-            'notification_type' => 'scheduled',
-            'is_read'           => 0,
-            'created_at'        => now(),
-            'updated_at'        => now(),
-            'createdBy'         => $authUserId,
-            'modifiedBy'        => $authUserId,
-            'status'            => 'pending',
-            'auto_send_time'    => $req->auto_send_time, // store scheduled time
-        ]);
-    }
-    }
+
 
 
 }

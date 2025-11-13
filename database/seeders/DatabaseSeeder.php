@@ -76,9 +76,9 @@ class DatabaseSeeder extends Seeder
         // DB::unprepared($astrologers);
         // $this->command->info(' Users table seeded successfully.');
 
-        $data = File::get($sqlPath . '/data.sql');
-        DB::unprepared($data);
-        $this->command->info(' Users table seeded successfully.');
+        // $data = File::get($sqlPath . '/data.sql');
+        // DB::unprepared($data);
+        // $this->command->info(' Users table seeded successfully.');
 
         // $this->call(UsersTableSeeder::class);
     }
