@@ -203,16 +203,22 @@ class HomeController extends Controller
                 $ip = '103.238.108.209';
             }
 
-
-                $geoResponse = Http::get("http://ip-api.com/json/{$ip}");
+            try {
+                $geoResponse = Http::timeout(5)->get("http://ip-api.com/json/{$ip}");
                 $geoData = $geoResponse->json();
 
-                $latitude = $geoData['lat'];
-                $longitude = $geoData['lon'];
-                $timezone = $geoData['timezone'];
+                $latitude = $geoData['lat'] ?? 28.6139; // Default to Delhi coordinates
+                $longitude = $geoData['lon'] ?? 77.2090;
+                $timezone = $geoData['timezone'] ?? 'Asia/Kolkata';
+            } catch (\Exception $e) {
+                // Use default values if geolocation fails
+                $latitude = 28.6139;
+                $longitude = 77.2090;
+                $timezone = 'Asia/Kolkata';
+            }
 
-                $date = date('d/m/Y');
-                $time = now($timezone)->format('H:i');
+            $date = date('d/m/Y');
+            $time = now($timezone)->format('H:i');
 
             // Generate a unique session key based on the IP and date
             $sessionKey = 'panchang_data_' . $ip . '_' . date('Y-m-d');
