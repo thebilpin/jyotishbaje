@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+# Set Redis URL if not provided (Railway auto-provides this)
+export REDIS_URL="${REDIS_URL:-redis://localhost:6379}"
+
 if [ -n "${DB_HOST}" ]; then
   echo "Waiting for database connection..."
   until php -r 'try {$host = getenv("DB_HOST") ?: "mysql"; $port = getenv("DB_PORT") ?: 3306; $fp = @fsockopen($host, (int) $port, $errno, $errstr, 2); if ($fp) {fclose($fp); exit(0);} exit(1);} catch (Throwable $e) {exit(1);}'; do
@@ -24,24 +27,30 @@ fi
 
 php artisan package:discover --ansi
 
-# Clear all caches first to ensure fresh compilation
+# Clear all caches first
 php artisan view:clear 2>/dev/null || true
 php artisan config:clear 2>/dev/null || true
 php artisan cache:clear 2>/dev/null || true
 
-# Optimize for production
+# Optimize for production with Redis cache
+echo "Optimizing application for production..."
 php artisan config:cache
 php artisan view:cache
 php artisan event:cache
-# Enable OPcache for better performance
-echo "opcache.enable=1" >> /etc/php.ini 2>/dev/null || true
-echo "opcache.memory_consumption=256" >> /etc/php.ini 2>/dev/null || true
-echo "opcache.max_accelerated_files=20000" >> /etc/php.ini 2>/dev/null || true
-echo "opcache.validate_timestamps=0" >> /etc/php.ini 2>/dev/null || true
 
 # Use the PORT environment variable from Railway
 PORT="${PORT:-8000}"
-echo "Starting optimized PHP server on port $PORT..."
+echo "Starting Nginx + PHP-FPM on port $PORT..."
 
-# Use PHP built-in server with optimizations for production
-exec php -d memory_limit=512M -d max_execution_time=60 -d opcache.enable=1 -S 0.0.0.0:${PORT} -t public public/index.php
+# Substitute PORT in nginx config
+envsubst '${PORT}' < nginx.conf > /tmp/nginx.conf
+envsubst '${REDIS_URL}' < php-fpm.conf > /tmp/php-fpm.conf
+
+# Copy PHP configuration
+cp php.ini /tmp/php.ini 2>/dev/null || true
+
+# Start PHP-FPM in background with custom php.ini
+php-fpm82 -y /tmp/php-fpm.conf -c /tmp/php.ini -F &
+
+# Start Nginx in foreground
+exec nginx -c /tmp/nginx.conf -g "daemon off;"
