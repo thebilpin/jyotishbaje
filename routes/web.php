@@ -11,14 +11,35 @@
 |
  */
 
-// Health check route for Railway deployment
+// Health check route for Fly.io deployment
 Route::get('/health', function () {
-    return response()->json([
-        'status' => 'ok',
-        'timestamp' => now(),
-        'environment' => config('app.env'),
-        'version' => app()->version(),
-    ]);
+    try {
+        $response = [
+            'status' => 'ok',
+            'timestamp' => now(),
+            'environment' => config('app.env'),
+            'version' => app()->version(),
+        ];
+        
+        // Test database connection if configured
+        if (config('database.default')) {
+            try {
+                DB::connection()->getPdo();
+                $response['database'] = 'connected';
+            } catch (Exception $e) {
+                $response['database'] = 'disconnected';
+                $response['status'] = 'warning';
+            }
+        }
+        
+        return response()->json($response);
+    } catch (Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+            'timestamp' => now()
+        ], 500);
+    }
 });
 use App\Http\Controllers\Admin\AdsVideoController;
 use App\Http\Controllers\Admin\AppFeedbackController;
