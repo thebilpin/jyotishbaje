@@ -10,6 +10,16 @@
 | be assigned to the "web" middleware group. Make something great!
 |
  */
+
+// Health check route for Railway deployment
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => now(),
+        'environment' => config('app.env'),
+        'version' => app()->version(),
+    ]);
+});
 use App\Http\Controllers\Admin\AdsVideoController;
 use App\Http\Controllers\Admin\AppFeedbackController;
 use App\Http\Controllers\Admin\AstrologerCategoryController;

@@ -1,1 +1,1 @@
-web: bash start-minimal.sh
+web: bash start-railway.sh
