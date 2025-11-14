@@ -1,33 +1,44 @@
-FROM webdevops/php-apache:8.2
+FROM php:8.2-apache
+
+# Install basic extensions
+RUN docker-php-ext-install pdo_mysql
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
 
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www/html
 
-# Copy application files
-COPY . /app
+# Copy app
+COPY . /var/www/html
 
-# Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction || echo "Composer install failed, continuing..."
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
+    && mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-# Create required directories and set permissions
-RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache public/build/assets \
-    && chmod -R 775 storage bootstrap/cache public/build \
-    && chown -R application:application storage bootstrap/cache public/build
+# Configure Apache
+RUN echo '<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/public\n\
+    <Directory /var/www/html/public>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Create Vite manifest and fallback assets
-RUN echo '{"resources/css/app.css":{"file":"assets/app.css","src":"resources/css/app.css"},"resources/js/app.js":{"file":"assets/app.js","src":"resources/js/app.js"}}' > public/build/manifest.json \
-    && echo "body { font-family: system-ui; }" > public/build/assets/app.css \
-    && echo "console.log('Assets loaded');" > public/build/assets/app.js
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set Apache DocumentRoot to Laravel public directory
-ENV WEB_DOCUMENT_ROOT=/app/public
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader || echo "Composer failed, continuing"
 
-# Create startup script
-RUN echo '#!/bin/bash\ncd /app\nmkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache\nchmod -R 775 storage bootstrap/cache\nchown -R application:application storage bootstrap/cache\nphp artisan config:cache || true\nphp artisan route:cache || true\nphp artisan view:cache || true\nphp artisan migrate --force || true\nphp artisan db:seed --class=AdminUserSeeder --force || true\nexec supervisord' > /start.sh \
-    && chmod +x /start.sh
+# Create simple startup
+RUN echo '#!/bin/bash\n\
+mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache\n\
+chmod -R 775 storage bootstrap/cache\n\
+chown -R www-data:www-data storage bootstrap/cache\n\
+apache2-foreground' > /start.sh && chmod +x /start.sh
 
-# Expose port 80
 EXPOSE 80
-
-# Start services
 CMD ["/start.sh"]
