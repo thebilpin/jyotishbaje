@@ -52,14 +52,45 @@ echo "Starting Nginx + PHP-FPM on port $PORT..."
 # Substitute PORT in nginx config
 envsubst '${PORT}' < nginx.conf > /tmp/nginx.conf
 
-# Configure PHP-FPM based on Redis availability
+# Test Redis connectivity and configure accordingly
+REDIS_AVAILABLE=false
 if [ -n "$REDIS_URL" ]; then
+  echo "Testing Redis connection..."
+  if php -r "
+    try {
+      \$redis = new Redis();
+      \$parsed = parse_url('$REDIS_URL');
+      \$host = \$parsed['host'] ?? '127.0.0.1';
+      \$port = \$parsed['port'] ?? 6379;
+      \$redis->connect(\$host, \$port, 2);
+      echo 'Redis connection successful';
+      exit(0);
+    } catch (Exception \$e) {
+      echo 'Redis connection failed: ' . \$e->getMessage();
+      exit(1);
+    }
+  " 2>/dev/null; then
+    REDIS_AVAILABLE=true
+    echo "Redis is available at $REDIS_URL"
+  else
+    echo "Redis connection failed, falling back to file-based storage"
+  fi
+fi
+
+# Configure PHP-FPM based on Redis availability
+if [ "$REDIS_AVAILABLE" = true ]; then
   echo "Configuring PHP-FPM with Redis session handler..."
   envsubst '${REDIS_URL}' < php-fpm.conf > /tmp/php-fpm.conf
+  # Set environment variables for Laravel
+  export CACHE_DRIVER=redis
+  export SESSION_DRIVER=redis
 else
   echo "Configuring PHP-FPM with file-based sessions..."
   # Remove Redis session configuration if Redis is not available
   sed '/php_value\[session.save_handler\]/d; /php_value\[session.save_path\]/d' php-fpm.conf > /tmp/php-fpm.conf
+  # Set environment variables for Laravel to use file-based storage
+  export CACHE_DRIVER=file
+  export SESSION_DRIVER=file
 fi
 
 # Copy PHP configuration
@@ -70,6 +101,7 @@ php-fpm -y /tmp/php-fpm.conf -c /tmp/php.ini -F &
 
 # Create Nginx directories
 mkdir -p /tmp/nginx/{logs,client_body,proxy,fastcgi,uwsgi,scgi}
+mkdir -p /var/log/nginx
 
 # Start Nginx in foreground
 exec nginx -c /tmp/nginx.conf -g "daemon off;"

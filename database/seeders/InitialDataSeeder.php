@@ -10,22 +10,32 @@ class InitialDataSeeder extends Seeder
 {
     public function run(): void
     {
-        // Insert essential systemflag data
-        DB::table('systemflag')->insert([
-            ['name' => 'professionTitle', 'value' => 'Astrologer', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'appName', 'value' => 'Astroway', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'appVersion', 'value' => '1.0.0', 'created_at' => now(), 'updated_at' => now()],
-        ]);
+        // Insert essential systemflag data (only if not exists)
+        $systemFlags = [
+            ['name' => 'professionTitle', 'value' => 'Astrologer'],
+            ['name' => 'appName', 'value' => 'Astroway'],
+            ['name' => 'appVersion', 'value' => '1.0.0'],
+        ];
 
-        // Create admin user
-        DB::table('admin')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@astroway.com',
-            'contactNo' => '1234567890',
-            'password' => Hash::make('admin123'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        foreach ($systemFlags as $flag) {
+            DB::table('systemflag')->updateOrInsert(
+                ['name' => $flag['name']],
+                array_merge($flag, ['created_at' => now(), 'updated_at' => now()])
+            );
+        }
+
+        // Create admin user (only if not exists)
+        DB::table('admin')->updateOrInsert(
+            ['email' => 'admin@astroway.com'],
+            [
+                'name' => 'Admin',
+                'email' => 'admin@astroway.com',
+                'contactNo' => '1234567890',
+                'password' => Hash::make('admin123'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         echo "Initial data seeded successfully!\n";
         echo "Admin login: admin@astroway.com / admin123\n";
