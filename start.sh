@@ -35,4 +35,9 @@ php artisan config:cache
 # php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
 php artisan event:cache
 
-exec php artisan serve --host=0.0.0.0 --port="${PORT:-8000}"
+# Use the PORT environment variable from Railway, default to 8000 if not set
+PORT="${PORT:-8000}"
+echo "Starting Laravel server on port $PORT..."
+
+# For production, use artisan serve with proper configuration
+exec php artisan serve --host=0.0.0.0 --port="${PORT}"
