@@ -32,9 +32,8 @@ class AstrologerCallController extends Controller
         $astrologerCategoryId=(int)$request->astrologerCategoryId;
         $searchTerm = $request->input('s');
 
-        $getIntakeForm = Http::withoutVerifying()->post(url('/') . '/api/chatRequest/getIntakeForm', [
-            'token' => $token,
-        ])->json();
+        // Get intake form using internal service to prevent HTTP timeout issues
+        $getIntakeForm = \App\Services\InternalApiService::getUserIntakeForm($token, $userId);
 
 
 

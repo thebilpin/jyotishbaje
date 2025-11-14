@@ -84,6 +84,23 @@ php artisan config:cache 2>/dev/null || true
 php artisan route:cache 2>/dev/null || true
 php artisan view:cache 2>/dev/null || true
 
+# Configure PHP settings for Railway
+echo "Configuring PHP settings for Railway environment..."
+export PHP_INI_SCAN_DIR="/app/php"
+mkdir -p /app/php
+cat > /app/php/railway.ini << 'EOF'
+max_execution_time=300
+max_input_time=60
+memory_limit=512M
+default_socket_timeout=30
+mysql.connect_timeout=10
+allow_url_fopen=1
+allow_url_include=0
+max_file_uploads=20
+upload_max_filesize=50M
+post_max_size=50M
+EOF
+
 # Set PORT from Railway
 PORT="${PORT:-8000}"
 
@@ -92,6 +109,8 @@ echo "Environment: $APP_ENV"
 echo "Debug: $APP_DEBUG"
 echo "Cache Driver: ${CACHE_DRIVER:-file}"
 echo "Session Driver: ${SESSION_DRIVER:-file}"
+echo "Memory Limit: $(php -r 'echo ini_get("memory_limit");')"
+echo "Max Execution Time: $(php -r 'echo ini_get("max_execution_time");')"
 
 # Start Laravel with proper host binding for Railway
-exec php artisan serve --host=0.0.0.0 --port=$PORT
+exec php -d max_execution_time=300 -d memory_limit=512M artisan serve --host=0.0.0.0 --port=$PORT

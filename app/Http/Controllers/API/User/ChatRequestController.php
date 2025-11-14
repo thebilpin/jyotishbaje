@@ -1344,12 +1344,26 @@ class ChatRequestController extends Controller
     public function getUserIntakForm(Request $req)
     {
         try {
-            if (!Auth::guard('api')->user()) {
-                return response()->json(['error' => 'Unauthorized', 'status' => 401], 401);
-            } else {
+            // Allow both API auth and session auth
+            $id = null;
+            if (Auth::guard('api')->user()) {
                 $id = Auth::guard('api')->user()->id;
+            } elseif (authcheck()) {
+                $id = authcheck()['id'];
             }
-            $id = $req->userId ? $req->userId : $id;
+            
+            // Use provided userId or fallback to authenticated user
+            $id = $req->userId ?: $id;
+            
+            if (!$id) {
+                return response()->json([
+                    'message' => 'No user ID available',
+                    'status' => 200,
+                    'recordList' => [],
+                    'default_time' => 5
+                ], 200);
+            }
+            
             $intakeData = DB::table('intakeform')
                 ->where('userId', '=', $id)
                 ->get();

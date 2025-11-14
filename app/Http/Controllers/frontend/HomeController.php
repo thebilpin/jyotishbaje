@@ -267,15 +267,8 @@ class HomeController extends Controller
         $astrologerCategoryId=(int)$request->astrologerCategoryId;
         $searchTerm = $request->input('s');
 
-        // Get intake form with timeout to prevent blocking
-        try {
-            $getIntakeForm = Http::withoutVerifying()->timeout(3)->post(url('/') . '/api/chatRequest/getIntakeForm', [
-                'token' => $token,
-            ])->json();
-        } catch (\Exception $e) {
-            // If API call fails, continue without intake form data
-            $getIntakeForm = null;
-        }
+        // Get intake form using internal service to prevent HTTP timeout issues
+        $getIntakeForm = \App\Services\InternalApiService::getUserIntakeForm($token, $userId);
 
         $isFreeChat = DB::table('systemflag')->where('name', 'FirstFreeChat')->select('value')->first();
         $isFreeAvailable=true;

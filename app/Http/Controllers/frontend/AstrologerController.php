@@ -36,9 +36,8 @@ class AstrologerController extends Controller
 
 
 
-        $getIntakeForm = Http::withoutVerifying()->post(url('/') . '/api/chatRequest/getIntakeForm', [
-            'token' => $token,
-        ])->json();
+        // Get intake form using internal service to prevent HTTP timeout issues
+        $getIntakeForm = \App\Services\InternalApiService::getUserIntakeForm($token, $userId);
 
         $getfollower = DB::table('astrologer_followers')
                 ->where('userId', '=', $userId)

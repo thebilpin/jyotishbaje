@@ -37,9 +37,8 @@ class AstrologerChatController extends Controller
 
         $getAstrologerCategory = AstrologerCategory::where('isActive', 1)->get();
 
-        $getIntakeForm = Http::withoutVerifying()->post(url('/') . '/api/chatRequest/getIntakeForm', [
-            'token' => $token,
-        ])->json();
+        // Get intake form using internal service to prevent HTTP timeout issues
+        $getIntakeForm = \App\Services\InternalApiService::getUserIntakeForm($token, $userId);
 
 
         // Check if user is eligible for free chat
