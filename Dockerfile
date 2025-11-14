@@ -1,7 +1,20 @@
 FROM php:8.2-apache
 
-# Install basic extensions
-RUN docker-php-ext-install pdo_mysql
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install pdo_mysql mbstring zip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -9,7 +22,13 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy app
+# Copy composer files first
+COPY composer.json composer.lock ./
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-scripts
+
+# Copy rest of application
 COPY . /var/www/html
 
 # Set permissions
@@ -27,11 +46,8 @@ RUN echo '<VirtualHost *:80>\n\
     </Directory>\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader || echo "Composer failed, continuing"
+# Run composer scripts after copying all files
+RUN composer dump-autoload --optimize
 
 # Create simple startup
 RUN echo '#!/bin/bash\n\
