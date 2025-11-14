@@ -78,6 +78,23 @@ fi
 # Create storage link for file uploads
 php artisan storage:link 2>/dev/null || echo "Storage link already exists or failed"
 
+# Ensure Vite assets exist for admin dashboard
+echo "Ensuring frontend assets are available..."
+mkdir -p public/build/assets
+if [ ! -f public/build/manifest.json ]; then
+    echo "Creating fallback Vite manifest..."
+    echo '{"resources/css/app.css":{"file":"assets/app.css","src":"resources/css/app.css"},"resources/js/app.js":{"file":"assets/app.js","src":"resources/js/app.js"}}' > public/build/manifest.json
+fi
+
+# Create fallback CSS and JS files if they don't exist
+if [ ! -f public/build/assets/app.css ]; then
+    echo "/* Fallback CSS */ body { font-family: system-ui; } .login { background: #667eea; min-height: 100vh; }" > public/build/assets/app.css
+fi
+
+if [ ! -f public/build/assets/app.js ]; then
+    echo "/* Fallback JS */ console.log('Assets loaded');" > public/build/assets/app.js
+fi
+
 # Optimize for production
 echo "Optimizing Laravel for production..."
 php artisan config:cache 2>/dev/null || true
