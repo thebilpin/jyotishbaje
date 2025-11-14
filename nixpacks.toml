@@ -6,9 +6,10 @@ cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
 
 [phases.build]
 cmds = [
-    "php artisan config:clear",
-    "php artisan cache:clear",
-    "php artisan view:clear"
+    "mkdir -p storage/framework/{sessions,views,cache}",
+    "mkdir -p storage/logs",
+    "mkdir -p bootstrap/cache",
+    "chmod -R 775 storage bootstrap/cache"
 ]
 
 [start]
