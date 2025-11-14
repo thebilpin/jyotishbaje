@@ -41,16 +41,20 @@ php artisan cache:clear
 php artisan view:clear
 php artisan config:cache
 
+# Get the current user and group to avoid nobody group issues
+CURRENT_USER=$(whoami || echo "www-data")
+CURRENT_GROUP=$(id -gn 2>/dev/null || echo "www-data")
+
 # Simple PHP-FPM configuration
-echo "Configuring PHP-FPM..."
-cat > /tmp/php-fpm.conf << 'EOF'
+echo "Configuring PHP-FPM for user: $CURRENT_USER, group: $CURRENT_GROUP"
+cat > /tmp/php-fpm.conf << EOF
 [global]
 error_log = /dev/stderr
 daemonize = no
 
 [www]
-user = nobody
-group = nobody
+user = $CURRENT_USER
+group = $CURRENT_GROUP
 listen = 127.0.0.1:9000
 pm = dynamic
 pm.max_children = 20
