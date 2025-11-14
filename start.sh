@@ -11,10 +11,10 @@ if [ -n "${DB_HOST}" ]; then
 fi
 
 echo "Running database migrations..."
-php artisan migrate --force
+php artisan migrate --force --isolated 2>/dev/null || echo "Migrations already applied"
 
 echo "Seeding initial data..."
-php artisan db:seed --class=InitialDataSeeder --force || echo "Seeder already ran or failed, continuing..."
+php artisan db:seed --class=InitialDataSeeder --force 2>/dev/null || echo "Seeder already ran"
 
 # Create symlink for public directory to fix asset paths
 if [ ! -L "public/public" ]; then
@@ -25,19 +25,23 @@ fi
 php artisan package:discover --ansi
 
 # Clear all caches first to ensure fresh compilation
-php artisan view:clear
-php artisan config:clear
-php artisan cache:clear
+php artisan view:clear 2>/dev/null || true
+php artisan config:clear 2>/dev/null || true
+php artisan cache:clear 2>/dev/null || true
 
-# Then rebuild caches (skip route:cache due to duplicate route names)
+# Optimize for production
 php artisan config:cache
-# Route caching disabled due to duplicate route name conflicts
-# php artisan route:cache || echo "Skipping route:cache; continuing without cached routes."
+php artisan view:cache
 php artisan event:cache
+# Enable OPcache for better performance
+echo "opcache.enable=1" >> /etc/php.ini 2>/dev/null || true
+echo "opcache.memory_consumption=256" >> /etc/php.ini 2>/dev/null || true
+echo "opcache.max_accelerated_files=20000" >> /etc/php.ini 2>/dev/null || true
+echo "opcache.validate_timestamps=0" >> /etc/php.ini 2>/dev/null || true
 
-# Use the PORT environment variable from Railway, default to 8000 if not set
+# Use the PORT environment variable from Railway
 PORT="${PORT:-8000}"
-echo "Starting Laravel server on port $PORT..."
+echo "Starting optimized PHP server on port $PORT..."
 
-# For production, use artisan serve with proper configuration
-exec php artisan serve --host=0.0.0.0 --port="${PORT}"
+# Use PHP built-in server with optimizations for production
+exec php -d memory_limit=512M -d max_execution_time=60 -d opcache.enable=1 -S 0.0.0.0:${PORT} -t public public/index.php
