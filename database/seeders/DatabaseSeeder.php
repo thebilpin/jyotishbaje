@@ -80,6 +80,6 @@ class DatabaseSeeder extends Seeder
         // DB::unprepared($data);
         // $this->command->info(' Users table seeded successfully.');
 
-        // $this->call(UsersTableSeeder::class);
+        // Always ensure admin user exists\n        $this->call(AdminUserSeeder::class);\n        \n        // $this->call(UsersTableSeeder::class);
     }
 }

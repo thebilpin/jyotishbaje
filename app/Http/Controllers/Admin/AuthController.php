@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Request\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\User;
@@ -41,15 +41,52 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-		
-        if (!\Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ])) {
-            return dd('error');
+        try {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+            
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => $validator->getMessageBag()->toArray(),
+                ]);
+            }
+            
+            // Try admin table first
+            $admin = DB::table('admin')->where('email', $request->email)->first();
+            if ($admin && password_verify($request->password, $admin->password)) {
+                Auth::loginUsingId($admin->id);
+                return response()->json([
+                    'success' => 'Login Success',
+                    'first' => '/admin/dashboard',
+                ]);
+            }
+            
+            // Fallback to users table
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return response()->json([
+                    'success' => 'Login Success',
+                    'first' => '/admin/dashboard',
+                ]);
+            }
+            
+            return response()->json([
+                'error' => ['Invalid Credentials'],
+            ]);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => [$e->getMessage()],
+            ]);
         }
+    }
+    
+    public function loginApi(Request $request)
+    {
+        return $this->login($request);
     }
 
     /**

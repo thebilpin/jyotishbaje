@@ -11,14 +11,19 @@
 
                 <div class="my-auto">
                     @php
-                        $logo = DB::table('systemflag')
-                            ->where('name', 'AdminLogo')
-                            ->select('value')
-                            ->first();
-                        $appName = DB::table('systemflag')
-                            ->where('name', 'AppName')
-                            ->select('value')
-                            ->first();
+                        try {
+                            $logo = DB::table('systemflag')
+                                ->where('name', 'AdminLogo')
+                                ->select('value')
+                                ->first();
+                            $appName = DB::table('systemflag')
+                                ->where('name', 'AppName')
+                                ->select('value')
+                                ->first();
+                        } catch (\Exception $e) {
+                            $logo = (object) ['value' => 'images/default-logo.svg'];
+                            $appName = (object) ['value' => 'Astroway Admin'];
+                        }
                     @endphp
                     <img alt="AstroGuru image" class="-intro-x w-1/2 -mt-16" src="/{{ $logo->value }}"
                         style="height: 200px;width: 200px;border-radius:50%">
@@ -111,7 +116,11 @@ jQuery.ajaxSetup({
 
        type:'POST',
        url:"{{ route('loginApi') }}",
-       data:{email:email, password:password},
+       data:{
+           email: email, 
+           password: password,
+           _token: $('meta[name="csrf-token"]').attr('content')
+       },
        success:function(data){
             if(jQuery.isEmptyObject(data.error)){
                 location.href = data.first;

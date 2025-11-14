@@ -141,6 +141,7 @@ Route::get('color-scheme-switcher/{color_scheme}', [ColorSchemeController::class
 Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'loginView')->name('login.index');
     Route::post('login', 'login')->name('login');
+    Route::post('loginApi', 'loginApi')->name('loginApi');
 });
 
 

@@ -58,10 +58,34 @@ if [ -n "$DATABASE_URL" ] || [ -n "$DB_HOST" ]; then
         fi
     done
     
-    # Run migrations
+    # Run migrations with proper error handling
     echo "Running database migrations..."
-    php artisan migrate --force --no-interaction || {
-        echo "Migration failed, but continuing startup..."
+    if php artisan migrate --force --no-interaction; then
+        echo "Migrations completed successfully"
+    else
+        echo "Migration failed, trying to create admin user manually..."
+        php artisan tinker --execute="
+            try {
+                if (!DB::table('admin')->where('email', 'admin@admin.com')->exists()) {
+                    DB::table('admin')->insert([
+                        'name' => 'Admin',
+                        'email' => 'admin@admin.com', 
+                        'password' => Hash::make('admin123'),
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
+                }
+                echo 'Admin user created';
+            } catch (Exception \$e) {
+                echo 'Failed to create admin: ' . \$e->getMessage();
+            }
+        " || echo "Manual admin creation failed"
+    fi
+    
+    # Ensure admin user exists
+    echo "Ensuring admin user exists..."
+    php artisan db:seed --class=AdminUserSeeder --force --no-interaction || {
+        echo "Admin seeder failed, but continuing startup..."
     }
     
     # Seed initial data if needed
