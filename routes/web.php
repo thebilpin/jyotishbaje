@@ -134,13 +134,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-
-    Route::get('/admin/ads-videos', [AdsVideoController::class, 'getAdsVideo'])->name('adsVideos');
-    Route::post('/admin/ads-videos/add', [AdsVideoController::class, 'addAdsVideoApi'])->name('addAdsVideoApi');
-    Route::post('/admin/ads-videos/edit', [AdsVideoController::class, 'editAdsVideoApi'])->name('editAdsVideoApi');
-    Route::post('/admin/ads-videos/status', [AdsVideoController::class, 'videoStatusApi'])->name('videoStatusApi');
-    Route::post('/admin/ads-videos/delete', [AdsVideoController::class, 'deleteVideo'])->name('deleteVideo');
-
 Route::get('get-session/{token}', [SessionController::class, 'storeSession'])->name('get-session');
 
 //Controller
@@ -187,27 +180,27 @@ Route::post('newsStatusApi', [NewsController::class, 'newsStatusApi'])->name('ne
 Route::post('astrologyCategoryStatusApi', [AstrologerCategoryController::class, 'astrologyCategoryStatusApi'])->name('astrologyCategoryStatusApi')->middleware('permission:status');
 Route::post('addReviewfromAdmin', [ReportBlockController::class, 'addReviewfromAdmin'])->name('addReviewfromAdmin');
 
-Route::get('gifts', [GiftController::class, 'addGift'])->name('gifts');
+Route::get('gifts/add', [GiftController::class, 'addGift'])->name('add-gift-page');
 Route::post('addGiftApi', [GiftController::class, 'addGiftApi'])->name('addGiftApi')->middleware('permission:add');
-Route::get('report', [ReportController::class, 'addReport'])->name('report');
-Route::post('reportTypes', [ReportController::class, 'getReport'])->name('reportTypes');
+Route::get('report/add', [ReportController::class, 'addReport'])->name('add-report-page');
+Route::post('reportTypes/get', [ReportController::class, 'getReport'])->name('get-report-types');
 Route::post('reportStatus', [ReportController::class, 'reportTypeStatusApi'])->name('reportStatusApi')->middleware('permission:status');
 Route::get('reportTypes/{page}', [ReportController::class, 'setReportpage'])->name('setReportpage');
 Route::post('editReport', [ReportController::class, 'editReportApi'])->name('editReportApi')->middleware('permission:edit');
 Route::post('addReportApi', [ReportController::class, 'addReportApi'])->name('addReportApi')->middleware('permission:add');
-Route::get('horoscopeSigns', [HororScopeSignController::class, 'addHororScopeSign'])->name('horoscopeSigns');
+Route::get('horoscopeSigns/add', [HororScopeSignController::class, 'addHororScopeSign'])->name('add-horoscope-sign-page');
 Route::post('addHororScopeSignApi', [HororScopeSignController::class, 'addHororScopeSignApi'])->name('addHororScopeSignApi')->middleware('permission:add');
-Route::get('astroMall', [AstroMallController::class, 'addAstroMall'])->name('astroMall');
+Route::get('astroMall', [AstroMallController::class, 'addAstroMall'])->name('add-astromall-page');
 Route::post('addAstroMallApi', [AstroMallController::class, 'addAstroMallApi'])->name('addAstroMallApi')->middleware('permission:add');
-Route::get('coupon-list', [CouponController::class, 'addCoupon'])->name('coupon-list');
+Route::get('coupon-list/add', [CouponController::class, 'addCoupon'])->name('add-coupon-page');
 Route::post('addCouponApi', [CouponController::class, 'addCouponApi'])->name('addCouponApi')->middleware('permission:add');
 Route::post('addBannerApi', [BannerController::class, 'addBannerApi'])->name('addBannerApi')->middleware('permission:add');
-Route::get('notifications', [NotificationController::class, 'addNotification'])->name('notifications');
+Route::get('notifications', [NotificationController::class, 'addNotification'])->name('add-notification-page');
 Route::post('addNotificationApi', [NotificationController::class, 'addNotificationApi'])->name('addNotificationApi')->middleware('permission:add');
-Route::get('blogs', [BlogController::class, 'addBlog'])->name('blogs');
-Route::post('blogs', [BlogController::class, 'getBlog'])->name('blogs');
+Route::get('blogs/add', [BlogController::class, 'addBlog'])->name('add-blog-page');
+Route::post('blogs/get', [BlogController::class, 'getBlog'])->name('get-blog-api');
 Route::post('addBlogApi', [BlogController::class, 'addBlogApi'])->name('addBlogApi')->middleware('permission:add');
-Route::get('adsVideos', [AdsVideoController::class, 'addAdsVideo'])->name('adsVideos');
+Route::get('adsVideos/add', [AdsVideoController::class, 'addAdsVideo'])->name('add-ads-video-page');
 Route::post('addAdsVideoApi', [AdsVideoController::class, 'addAdsVideoApi'])->name('addAdsVideoApi');
 Route::post('addNewsApi', [NewsController::class, 'addNewsApi'])->name('addNewsApi')->middleware('permission:add');
 Route::post('addProductApi', [AstroMallController::class, 'addProductApi'])->name('addProductApi')->middleware('permission:add');
@@ -219,7 +212,7 @@ Route::post('addUserApi', [CustomerController::class, 'addUserApi'])->name('addU
 Route::post('dashboard', [DashboardController::class, 'getDashboard'])->name('getDashboard');
 Route::get('tnc', [DashboardController::class, 'termscond'])->name('termscond');
 Route::get('privacy-policy', [DashboardController::class, 'privacyPolicy'])->name('privacyPolicy');
-Route::get('commissions', [CommissionController::class, 'addCommission'])->name('commissions');
+Route::get('commissions/add', [CommissionController::class, 'addCommission'])->name('add-commission-page');
 Route::post('addCommissionApi', [CommissionController::class, 'addCommissionApi'])->name('addCommissionApi')->middleware('permission:add');
 Route::delete('deleteCommission', [CommissionController::class, 'deleteCommission'])->name('deleteCommission');
 
@@ -348,12 +341,12 @@ Route::group(['middleware' => ['web']], function () use($professionTitle) {
         Route::get('dailyHoroscope', 'dailyHoroscope')->name('dailyHoroscope');
         Route::get('withdrawalRequests', 'withdrawlRequest')->name('withdrawalRequests');
         //Get data Controller
-        Route::get('skills', [SkillController::class, 'getSkill'])->name('get-skills');
+        Route::get('get-skills', [SkillController::class, 'getSkill'])->name('get-skills');
         Route::get($professionTitle.'Review', [ReportBlockController::class, 'getReportBlock'])->name('astrologerReview');
         Route::get('block'.$professionTitle, [BlockAstrologerController::class, 'getBlockAstrologer'])->name('blockAstrologer');
         Route::post('block'.$professionTitle, [BlockAstrologerController::class, 'getBlockAstrologer'])->name('blockAstrologer');
-        Route::get('gifts', [GiftController::class, 'getGift'])->name('gifts');
-        Route::post('gifts', [GiftController::class, 'getGift'])->name('gifts');
+        Route::get('gifts/list', [GiftController::class, 'getGift'])->name('get-gifts-list');
+        Route::post('gifts/data', [GiftController::class, 'getGift'])->name('get-gifts-data');
         Route::get('tickets', [TicketController::class, 'getTicket'])->name('tickets');
 		Route::get('astrologer-tickets', [TicketController::class, 'getAstrologerTicket'])->name('astrologerTickets');
 

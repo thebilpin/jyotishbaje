@@ -20,7 +20,11 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
-DB::unprepared(file_get_contents(database_path('sql/app_designs.sql')));
+        
+        // Only seed if table is empty to prevent duplicate key errors
+        if (DB::table('app_designs')->count() === 0) {
+            DB::unprepared(file_get_contents(database_path('sql/app_designs.sql')));
+        }
     }
 
     /**
