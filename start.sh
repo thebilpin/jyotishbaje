@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-# Set Redis URL if not provided (Railway auto-provides this)
-export REDIS_URL="${REDIS_URL:-redis://localhost:6379}"
+# Set Redis URL if not provided - leave empty to use file cache
+export REDIS_URL="${REDIS_URL:-}"
 
 if [ -n "${DB_HOST}" ]; then
   echo "Waiting for database connection..."
@@ -32,11 +32,18 @@ php artisan view:clear 2>/dev/null || true
 php artisan config:clear 2>/dev/null || true
 php artisan cache:clear 2>/dev/null || true
 
-# Optimize for production with Redis cache
+# Optimize for production
 echo "Optimizing application for production..."
-php artisan config:cache
-php artisan view:cache
-php artisan event:cache
+if [ -n "$REDIS_URL" ]; then
+  echo "Using Redis for caching..."
+  php artisan config:cache
+  php artisan view:cache
+  php artisan event:cache
+else
+  echo "Redis not available, using file-based caching..."
+  php artisan config:cache
+  php artisan view:cache
+fi
 
 # Use the PORT environment variable from Railway
 PORT="${PORT:-8000}"
@@ -50,7 +57,10 @@ envsubst '${REDIS_URL}' < php-fpm.conf > /tmp/php-fpm.conf
 cp php.ini /tmp/php.ini 2>/dev/null || true
 
 # Start PHP-FPM in background with custom php.ini
-php-fpm82 -y /tmp/php-fpm.conf -c /tmp/php.ini -F &
+php-fpm -y /tmp/php-fpm.conf -c /tmp/php.ini -F &
+
+# Create Nginx directories
+mkdir -p /tmp/nginx/{logs,client_body,proxy,fastcgi,uwsgi,scgi}
 
 # Start Nginx in foreground
 exec nginx -c /tmp/nginx.conf -g "daemon off;"
