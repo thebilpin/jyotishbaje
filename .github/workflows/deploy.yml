@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy to Fly.io
 
 on:
   push:
@@ -7,44 +7,15 @@ on:
 
 jobs:
   deploy:
+    name: Deploy app
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, bcmath, zip
+      - name: Setup Fly CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
         
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      
-    - name: Generate key
-      run: php artisan key:generate
-      
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
-      
-    - name: Clear Cache
-      run: |
-        php artisan config:clear
-        php artisan cache:clear
-        php artisan view:clear
-        
-    - name: Run Database Migrations
-      run: php artisan migrate --force
-      
-    - name: Seed Database
-      run: php artisan db:seed --class=InitialDataSeeder --force
-      
-    - name: Deploy to Server
-      if: github.ref == 'refs/heads/main'
-      run: |
-        echo "Deployment would happen here"
-        # Add your deployment commands here
+      - name: Deploy to Fly.io
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

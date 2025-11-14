@@ -1,76 +1,33 @@
-FROM php:8.2-fpm
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    nginx \
-    supervisor \
-    nodejs \
-    npm \
-    && docker-php-ext-configure gd \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+FROM webdevops/php-apache:8.2
 
 # Set working directory
 WORKDIR /app
 
-# Copy existing application directory contents
+# Copy application files
 COPY . /app
 
-# Copy existing application directory permissions
-COPY --chown=www-data:www-data . /app
-
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Install Node.js dependencies and build assets
-RUN npm install --production || echo "NPM install failed, continuing..."
-RUN npm run build || npm run prod || bash build-assets.sh || echo "Asset build failed, using fallbacks"
+# Install Composer dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction || echo "Composer install failed, continuing..."
 
 # Create required directories and set permissions
-RUN mkdir -p storage/framework/{sessions,views,cache} \
-    && mkdir -p storage/logs \
-    && mkdir -p bootstrap/cache \
-    && mkdir -p public/build/assets \
+RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache public/build/assets \
     && chmod -R 775 storage bootstrap/cache public/build \
-    && chown -R www-data:www-data storage bootstrap/cache public/build
+    && chown -R application:application storage bootstrap/cache public/build
 
-# Ensure Vite manifest exists
-RUN if [ ! -f public/build/manifest.json ]; then \
-        echo '{"resources/css/app.css":{"file":"assets/app.css","src":"resources/css/app.css"},"resources/js/app.js":{"file":"assets/app.js","src":"resources/js/app.js"}}' > public/build/manifest.json; \
-    fi
+# Create Vite manifest and fallback assets
+RUN echo '{"resources/css/app.css":{"file":"assets/app.css","src":"resources/css/app.css"},"resources/js/app.js":{"file":"assets/app.js","src":"resources/js/app.js"}}' > public/build/manifest.json \
+    && echo "body { font-family: system-ui; }" > public/build/assets/app.css \
+    && echo "console.log('Assets loaded');" > public/build/assets/app.js
 
-# Create fallback assets if they don't exist
-RUN if [ ! -f public/build/assets/app.css ]; then \
-        echo "/* Fallback CSS */ body { font-family: system-ui; }" > public/build/assets/app.css; \
-    fi && \
-    if [ ! -f public/build/assets/app.js ]; then \
-        echo "console.log('Assets loaded');" > public/build/assets/app.js; \
-    fi
+# Set Apache DocumentRoot to Laravel public directory
+ENV WEB_DOCUMENT_ROOT=/app/public
 
-# Copy Nginx configuration
-COPY nginx-fly.conf /etc/nginx/sites-available/default
+# Create startup script
+RUN echo '#!/bin/bash\ncd /app\nphp artisan config:cache || true\nphp artisan route:cache || true\nphp artisan view:cache || true\nphp artisan migrate --force || true\nphp artisan db:seed --class=AdminUserSeeder --force || true\nexec supervisord' > /start.sh \
+    && chmod +x /start.sh
 
-# Copy supervisor configuration
-COPY supervisord-fly.conf /etc/supervisor/conf.d/supervisord.conf
+# Expose port 80
+EXPOSE 80
 
-# Make startup script executable
-RUN chmod +x start-fly.sh
-
-# Expose port 8000
-EXPOSE 8000
-
-# Start supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Start services
+CMD ["/start.sh"]

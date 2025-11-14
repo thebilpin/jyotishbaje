@@ -1,112 +1,139 @@
-scheduling build on Metal builder "builder-ozbnqy"
-[snapshot] received sha256:8c920ee940e11df95b6afd20159a6800516b20cd8ffa34396bfd88a79284c6d3 md5:7059cfbc122ceeb3f5e32286f575af56
-[snapshot] receiving snapshot, complete 16 MB [took 3.692932907s]
-[snapshot] analyzing snapshot, complete 16 MB [took 258.662667ms]
-[snapshot] uploading snapshot, complete 16 MB [took 340.167119ms]
-scheduling build on Metal builder "builder-ozbnqy"
-fetched snapshot sha256:8c920ee940e11df95b6afd20159a6800516b20cd8ffa34396bfd88a79284c6d3 (16 MB bytes)
-[snapshot] fetching snapshot, complete 16 MB [took 538.651324ms]
-[snapshot] unpacking archive, complete 49 MB [took 411.053702ms]
-using build driver nixpacks-v1.39.0
- 
-╔══════════════════════════════ Nixpacks v1.39.0 ══════════════════════════════╗
-║ setup      │ php82, php82Packages.composer, php82Extensions.mbstring,        ║
-║            │ php82Extensions.pdo, php82Extensions.pdo_mysql,                 ║
-║            │ php82Extensions.gd, php82Extensions.zip, php82Extensions.curl,  ║
-║            │ php82Extensions.opcache, php82Extensions.redis, nginx, gettext  ║
-║──────────────────────────────────────────────────────────────────────────────║
-║ install    │ composer install --no-dev --optimize-autoloader --no-           ║
-║            │ interaction                                                     ║
-║──────────────────────────────────────────────────────────────────────────────║
-║ build      │ mkdir -p storage/framework/{sessions,views,cache}               ║
-║            │ mkdir -p storage/logs                                           ║
-║            │ mkdir -p bootstrap/cache                                        ║
-║            │ chmod -R 775 storage bootstrap/cache                            ║
-║──────────────────────────────────────────────────────────────────────────────║
-║ start      │ bash start.sh                                                   ║
-╚══════════════════════════════════════════════════════════════════════════════╝
- 
- 
-Saved output to:
-  snapshot-target-unpack
+Exception  ViewException  ViewException
+HTTP 500 Internal Server Error
+Vite manifest not found at: /app/public/build/manifest.json (View: /app/resources/views/layout/login.blade.php) (View: /app/resources/views/layout/login.blade.php)
+Illuminate\View\
+ViewException
+Show exception properties
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php (line 684)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> handleViewException (line 106)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php -> handleViewException (line 60)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> evaluatePath (line 69)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php -> evaluatePath (line 70)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> get (line 35)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> get (line 195)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> getContents (line 178)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> renderContents (line 147)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Response.php -> render (line 69)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Response.php -> setContent (line 35)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> __construct (line 906)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php :: toResponse (line 875)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> prepareResponse (line 797)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Routing\{closure} (line 141)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php -> Illuminate\Pipeline\{closure} (line 50)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php -> Illuminate\Pipeline\{closure} (line 78)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php -> Illuminate\Pipeline\{closure} (line 49)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php -> Illuminate\Pipeline\{closure} (line 121)
+in /app/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php -> handleStatefulRequest (line 64)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php -> Illuminate\Pipeline\{closure} (line 37)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php -> Illuminate\Pipeline\{closure} (line 67)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Pipeline\{closure} (line 116)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> then (line 797)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> runRouteWithinStack (line 776)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> runRoute (line 740)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> dispatchToRoute (line 729)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> dispatch (line 199)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Foundation\Http\{closure} (line 141)
+in /app/vendor/livewire/livewire/src/DisableBrowserCache.php -> Illuminate\Pipeline\{closure} (line 19)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php -> Illuminate\Pipeline\{closure} (line 21)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php -> handle (line 31)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php -> Illuminate\Pipeline\{closure} (line 21)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php -> handle (line 40)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php -> Illuminate\Pipeline\{closure} (line 27)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php -> Illuminate\Pipeline\{closure} (line 86)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php -> Illuminate\Pipeline\{closure} (line 49)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php -> Illuminate\Pipeline\{closure} (line 39)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Pipeline\{closure} (line 116)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> then (line 174)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> sendRequestThroughRouter (line 143)
+Kernel->handle(object(Request))
+in /app/public/index.php (line 51)
+$app = require_once __DIR__.'/../bootstrap/app.php';$kernel = $app->make(Kernel::class);$response = $kernel->handle(    $request = Request::capture())->send();$kernel->terminate($request, $response);
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php require_once (line 16)
+Illuminate\View\
+ViewException
+Vite manifest not found at: /app/public/build/manifest.json (View: /app/resources/views/layout/login.blade.php)
 
-internal
-load build definition from Dockerfile
-0ms
-
-internal
-load metadata for ghcr.io/railwayapp/nixpacks:ubuntu-1745885067
-565ms
-
-internal
-load .dockerignore
-0ms
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "APP_KEY") (line 11)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "DB_PASSWORD") (line 11)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "JWT_SECRET") (line 11)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "APP_KEY") (line 12)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "DB_PASSWORD") (line 12)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "JWT_SECRET") (line 12)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
- details: Sensitive data should not be used in the ARG or ENV commands
-
-[ 1/13] FROM ghcr.io/railwayapp/nixpacks:ubuntu-1745885067@sha256:d45c89d80e13d7ad0fd555b5130f22a866d9dd10e861f589932303ef2314c7de
-9ms
-
-internal
-load build context
-0ms
-
-[ 2/13] WORKDIR /app/ cached
-0ms
-
-[ 3/13] COPY .nixpacks/nixpkgs-e24b4c09e963677b1beea49d411cd315a024ad3a.nix .nixpacks/nixpkgs-e24b4c09e963677b1beea49d411cd315a024ad3a.nix
-209ms
-
-[ 4/13] RUN nix-env -if .nixpacks/nixpkgs-e24b4c09e963677b1beea49d411cd315a024ad3a.nix && nix-collect-garbage -d
-50s
-19 store paths deleted, 235.33 MiB freed
-
-[ 5/13] COPY .nixpacks/assets /assets/
-217ms
-
-[ 6/13] COPY . /app/.
-435ms
-
-[ 7/13] RUN  composer install --no-dev --optimize-autoloader --no-interaction
-14s
-Use the `composer fund` command to find out more!
-
-[ 8/13] COPY . /app/.
-1s
-
-[ 9/13] RUN  mkdir -p storage/framework/{sessions,views,cache}
-196ms
-
-1
-RUN  mkdir -p storage/logs
-348ms
-
-1
-RUN  mkdir -p bootstrap/cache
-202ms
-
-1
-RUN  chmod -R 775 storage bootstrap/cache
-198ms
-
-1
-COPY . /app
-1s
-
-exporting to docker image format
-6s
-containerimage.descriptor: eyJtZWRpYVR5cGUiOiJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLm1hbmlmZXN0LnYxK2pzb24iLCJkaWdlc3QiOiJzaGEyNTY6NmIzYWM3ZDA1NzI0YjAyZWQ3OGI2MGE2ZjZmM2RkOTc3ZmU2MDNhOTdmZWIzM2FiMTQ0MzMyMjhlNTUyMjA5YSIsInNpemUiOjMzMzEsImFubm90YXRpb25zIjp7Im9yZy5vcGVuY29udGFpbmVycy5pbWFnZS5jcmVhdGVkIjoiMjAyNS0xMS0xNFQwNTowOToxMloifSwicGxhdGZvcm0iOnsiYXJjaGl0ZWN0dXJlIjoiYW1kNjQiLCJvcyI6ImxpbnV4In19
-containerimage.config.digest: sha256:a02145617f7ff8d25a7afad8b9df05c467045a14395fd81c31ddc940d2b89228
-containerimage.digest: sha256:6b3ac7d05724b02ed78b60a6f6f3dd977fe603a97feb33ab14433228e552209a
-image push progress: 404 MB/445 MB
-image push progress: 445 MB/445 MB
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php (line 684)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> handleViewException (line 106)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php -> handleViewException (line 60)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> evaluatePath (line 69)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php -> evaluatePath (line 70)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> get (line 35)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> get (line 195)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> getContents (line 178)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> renderContents (line 147)
+View->render()
+in /app/storage/framework/views/708194603655242d1e8191b1421d3627.php (line 153)
+            $('.loader').hide();        })    </script><?php $__env->stopSection(); ?><?php echo $__env->make('../layout/' . $layout, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /app/resources/views/pages/login.blade.php ENDPATH**/ ?>
+in /app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php require (line 109)
+in /app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php :: Illuminate\Filesystem\{closure} (line 110)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php -> getRequire (line 58)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> evaluatePath (line 69)
+in /app/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php -> evaluatePath (line 70)
+in /app/vendor/livewire/livewire/src/ComponentConcerns/RendersLivewireComponents.php -> get (line 35)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> get (line 195)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> getContents (line 178)
+in /app/vendor/laravel/framework/src/Illuminate/View/View.php -> renderContents (line 147)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Response.php -> render (line 69)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Response.php -> setContent (line 35)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> __construct (line 906)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php :: toResponse (line 875)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> prepareResponse (line 797)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Routing\{closure} (line 141)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php -> Illuminate\Pipeline\{closure} (line 50)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php -> Illuminate\Pipeline\{closure} (line 78)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php -> Illuminate\Pipeline\{closure} (line 49)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php -> Illuminate\Pipeline\{closure} (line 121)
+in /app/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php -> handleStatefulRequest (line 64)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php -> Illuminate\Pipeline\{closure} (line 37)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php -> Illuminate\Pipeline\{closure} (line 67)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Pipeline\{closure} (line 116)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> then (line 797)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> runRouteWithinStack (line 776)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> runRoute (line 740)
+in /app/vendor/laravel/framework/src/Illuminate/Routing/Router.php -> dispatchToRoute (line 729)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> dispatch (line 199)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Foundation\Http\{closure} (line 141)
+in /app/vendor/livewire/livewire/src/DisableBrowserCache.php -> Illuminate\Pipeline\{closure} (line 19)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php -> Illuminate\Pipeline\{closure} (line 21)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php -> handle (line 31)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php -> Illuminate\Pipeline\{closure} (line 21)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php -> handle (line 40)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php -> Illuminate\Pipeline\{closure} (line 27)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php -> Illuminate\Pipeline\{closure} (line 86)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php -> Illuminate\Pipeline\{closure} (line 49)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php -> Illuminate\Pipeline\{closure} (line 39)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> handle (line 180)
+in /app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php -> Illuminate\Pipeline\{closure} (line 116)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> then (line 174)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php -> sendRequestThroughRouter (line 143)
+Kernel->handle(object(Request))
+in /app/public/index.php (line 51)
+in /app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php require_once (line 16)
+Exception
+Vite manifest not found at: /app/public/build/manifest.json
