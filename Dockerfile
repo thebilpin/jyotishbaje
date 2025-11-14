@@ -23,7 +23,7 @@ RUN echo '{"resources/css/app.css":{"file":"assets/app.css","src":"resources/css
 ENV WEB_DOCUMENT_ROOT=/app/public
 
 # Create startup script
-RUN echo '#!/bin/bash\ncd /app\nphp artisan config:cache || true\nphp artisan route:cache || true\nphp artisan view:cache || true\nphp artisan migrate --force || true\nphp artisan db:seed --class=AdminUserSeeder --force || true\nexec supervisord' > /start.sh \
+RUN echo '#!/bin/bash\ncd /app\nmkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache\nchmod -R 775 storage bootstrap/cache\nchown -R application:application storage bootstrap/cache\nphp artisan config:cache || true\nphp artisan route:cache || true\nphp artisan view:cache || true\nphp artisan migrate --force || true\nphp artisan db:seed --class=AdminUserSeeder --force || true\nexec supervisord' > /start.sh \
     && chmod +x /start.sh
 
 # Expose port 80
