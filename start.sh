@@ -51,7 +51,16 @@ echo "Starting Nginx + PHP-FPM on port $PORT..."
 
 # Substitute PORT in nginx config
 envsubst '${PORT}' < nginx.conf > /tmp/nginx.conf
-envsubst '${REDIS_URL}' < php-fpm.conf > /tmp/php-fpm.conf
+
+# Configure PHP-FPM based on Redis availability
+if [ -n "$REDIS_URL" ]; then
+  echo "Configuring PHP-FPM with Redis session handler..."
+  envsubst '${REDIS_URL}' < php-fpm.conf > /tmp/php-fpm.conf
+else
+  echo "Configuring PHP-FPM with file-based sessions..."
+  # Remove Redis session configuration if Redis is not available
+  sed '/php_value\[session.save_handler\]/d; /php_value\[session.save_path\]/d' php-fpm.conf > /tmp/php-fpm.conf
+fi
 
 # Copy PHP configuration
 cp php.ini /tmp/php.ini 2>/dev/null || true
